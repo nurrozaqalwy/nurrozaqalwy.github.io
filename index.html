@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Sejarah Islam | Media Pembelajaran Interaktif 6 Halaman</title>
-  <meta name="description" content="Media pembelajaran interaktif Sejarah Islam tingkat SMA dalam 6 halaman materi komprehensif, ilustrasi realistis bawaan, dan uji diri." />
+  <meta name="description" content="Media pembelajaran interaktif Sejarah Islam tingkat SMA dalam 6 halaman materi komprehensif, ilustrasi realistis bawaan, fitur zoom detail, dan uji diri." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -38,9 +38,7 @@
     }
 
     /* Navigasi Tab 6 Halaman */
-    .page-tab {
-      transition: all 0.2s ease;
-    }
+    .page-tab { transition: all 0.2s ease; }
     .page-tab.active {
       background: #1d5c47;
       border-color: #1d5c47;
@@ -58,15 +56,13 @@
       display: none;
       animation: pageFadeIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .topic-page.active {
-      display: block;
-    }
+    .topic-page.active { display: block; }
     @keyframes pageFadeIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Bingkai Ilustrasi Realistis & Efek 3D Tilt */
+    /* Bingkai Ilustrasi & Efek 3D Tilt */
     .frame {
       background: linear-gradient(155deg, #fffdf8 0%, #f3ead6 55%, #e6d7b9 100%);
       box-shadow:
@@ -89,7 +85,7 @@
     }
 
     .frame-stage:hover {
-      box-shadow: inset 0 0 0 1px rgba(212, 162, 76, 0.55), 0 18px 36px -12px rgba(13, 27, 23, 0.5);
+      box-shadow: inset 0 0 0 1px rgba(212, 162, 76, 0.65), 0 18px 36px -12px rgba(13, 27, 23, 0.5);
     }
 
     .art-svg {
@@ -98,27 +94,22 @@
       display: block;
     }
 
-    /* Lapisan Parallax di dalam Ilustrasi */
     .px-layer {
       transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform;
     }
 
-    /* Pantulan cahaya kaca dinamis */
     .frame-glare {
       position: absolute;
       inset: 0;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.35s ease;
-      background: radial-gradient(circle 220px at var(--gx, 50%) var(--gy, 50%), rgba(255, 252, 240, 0.3), rgba(255, 252, 240, 0.06) 45%, transparent 75%);
+      background: radial-gradient(circle 220px at var(--gx, 50%) var(--gy, 50%), rgba(255, 252, 240, 0.28), rgba(255, 252, 240, 0.05) 45%, transparent 75%);
       mix-blend-mode: screen;
       z-index: 15;
     }
-
-    .frame-stage:hover .frame-glare {
-      opacity: 1;
-    }
+    .frame-stage:hover .frame-glare { opacity: 1; }
 
     /* Pin Hotspot Interaktif */
     .hotspot-pin {
@@ -127,7 +118,7 @@
       height: 26px;
       transform: translate(-50%, -50%);
       border-radius: 9999px;
-      background: rgba(13, 27, 23, 0.86);
+      background: rgba(13, 27, 23, 0.88);
       border: 1.5px solid #f3d17f;
       color: #f3d17f;
       display: flex;
@@ -141,14 +132,12 @@
       animation: pulsePin 2.4s infinite;
       transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     }
-
     .hotspot-pin:hover, .hotspot-pin.active {
       background: #d4a24c;
       color: #0d1b17;
       transform: translate(-50%, -50%) scale(1.16);
       animation: none;
     }
-
     @keyframes pulsePin {
       0% { box-shadow: 0 0 0 0 rgba(243, 209, 127, 0.7), 0 4px 10px rgba(0, 0, 0, 0.45); }
       70% { box-shadow: 0 0 0 10px rgba(243, 209, 127, 0), 0 4px 10px rgba(0, 0, 0, 0.45); }
@@ -174,37 +163,45 @@
       pointer-events: none;
       transition: opacity 0.22s ease, transform 0.22s ease;
     }
-
     .hotspot-card.open {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
     }
 
-    /* Tombol Perbesar */
+    /* Tombol Perbesar & Inspeksi */
     .zoom-trigger {
       position: absolute;
       top: 10px;
       right: 10px;
       z-index: 20;
-      background: rgba(13, 27, 23, 0.8);
+      background: rgba(13, 27, 23, 0.85);
       backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(243, 209, 127, 0.45);
       color: #f7f3ea;
       font-size: 11px;
       font-weight: 600;
-      padding: 5px 10px;
+      padding: 5px 11px;
       border-radius: 9999px;
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      transition: background-color 0.2s, border-color 0.2s;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .frame-stage:hover .zoom-trigger {
+      border-color: #f3d17f;
+      background: #0d1b17;
+      transform: scale(1.03);
     }
 
-    .frame-stage:hover .zoom-trigger {
-      border-color: rgba(212, 162, 76, 0.85);
-      background: rgba(13, 27, 23, 0.95);
+    /* Viewport & Drag Zoom pada Modal */
+    #modal-viewport {
+      touch-action: none;
+      user-select: none;
+      cursor: zoom-in;
     }
+    #modal-viewport.is-zoomed { cursor: grab; }
+    #modal-viewport.is-dragging { cursor: grabbing; }
 
     /* Kuis Uji Diri */
     .quiz-btn {
@@ -273,7 +270,7 @@
   <svg width="0" height="0" class="absolute" aria-hidden="true">
     <defs>
       <filter id="grain-tex" x="0%" y="0%" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" stitchTiles="stitch" result="noise"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch" result="noise"/>
         <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.09 0" in="noise" result="coloredNoise"/>
         <feComposite operator="in" in="coloredNoise" in2="SourceGraphic"/>
       </filter>
@@ -328,8 +325,8 @@
       </linearGradient>
 
       <linearGradient id="rock-lit" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#5c6e64"/>
-        <stop offset="48%" stop-color="#33463d"/>
+        <stop offset="0%" stop-color="#62756b"/>
+        <stop offset="48%" stop-color="#354a40"/>
         <stop offset="100%" stop-color="#172620"/>
       </linearGradient>
 
@@ -431,15 +428,15 @@
     <section class="topic-page active" data-page="1" data-slug="makkah" data-heading="1. Masa Makkah: Kelahiran, Wahyu Pertama, dan Dakwah Awal" data-era="570–622 M">
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
-          <figure class="frame rounded-2xl p-3.5" data-title="Jabal Nur & Gua Hira (610 M)" data-caption="Puncak berbatu Jabal Nur di timur laut Makkah, tempat Nabi Muhammad SAW menerima wahyu pertama di dalam Gua Hira.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Gua Hira di Jabal Nur. Klik untuk memperbesar.">
+          <figure class="frame rounded-2xl p-3.5" data-title="Jabal Nur & Gua Hira (610 M)" data-caption="Puncak berbatu granit Jabal Nur di timur laut Makkah, tempat Nabi Muhammad SAW menerima wahyu pertama di dalam Gua Hira.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Gua Hira di Jabal Nur. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Jabal Nur & Gua Hira -->
+              <!-- Ilustrasi Detail Berlapis: Jabal Nur & Gua Hira -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Gua Hira di Jabal Nur pada malam hari">
                 <!-- Lapisan 1: Langit Malam Berbintang & Pegunungan Hijaz -->
                 <g class="px-layer" data-depth="0.22">
@@ -469,14 +466,14 @@
 
                 <!-- Lapisan 2: Puncak Granit Jabal Nur & Gua Hira -->
                 <g class="px-layer" data-depth="0.55">
-                  <circle cx="268" cy="112" r="52" fill="url(#warm-glow)" class="flicker"/>
+                  <circle cx="268" cy="112" r="54" fill="url(#warm-glow)" class="flicker"/>
                   <!-- Massa Utama Gunung -->
                   <path d="M25 305 L96 196 L146 142 L192 84 L228 60 L264 66 L308 118 L354 176 L418 305 Z" fill="url(#rock-dark)"/>
                   <!-- Bidang Batu Terkena Cahaya Bulan -->
                   <path d="M192 84 L228 60 L254 96 L236 154 L196 205 L146 305 L96 196 L146 142 Z" fill="url(#rock-lit)"/>
-                  <!-- Detail Tebing & Retakan Granit -->
-                  <path d="M228 60 L246 112 L212 164 L182 232 M146 142 L176 178 L152 248 M264 66 L292 128 L334 192" stroke="#08120e" stroke-width="2" fill="none" opacity="0.72"/>
-                  <path d="M192 84 L212 124 L178 168 M228 60 L238 98" stroke="#85a394" stroke-width="1.2" fill="none" opacity="0.4"/>
+                  <!-- Detail Tebing, Stratifikasi & Retakan Granit -->
+                  <path d="M228 60 L246 112 L212 164 L182 232 M146 142 L176 178 L152 248 M264 66 L292 128 L334 192 M122 184 L158 206 L132 268" stroke="#08120e" stroke-width="2" fill="none" opacity="0.72"/>
+                  <path d="M192 84 L212 124 L178 168 M228 60 L238 98 M164 128 L188 152" stroke="#85a394" stroke-width="1.2" fill="none" opacity="0.45"/>
                   <!-- Celah Batu Gua Hira -->
                   <path d="M248 122 Q256 90 272 89 Q288 90 294 122 Z" fill="#070f0c"/>
                   <path d="M253 122 Q259 96 272 95 Q284 96 289 122 Z" fill="url(#warm-glow)" class="flicker"/>
@@ -506,7 +503,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Gua Hira di puncak Jabal Nur · Klik pin angka untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Gua Hira di puncak Jabal Nur · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -582,14 +579,14 @@
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
           <figure class="frame rounded-2xl p-3.5" data-title="Masjid Nabawi Awal & Cakrawala Madinah (622 M)" data-caption="Arsitektur sederhana Masjid Nabawi pada awal hijrah yang dibangun dari batu bata tanah liat (libn) dan batang pohon kurma dengan latar Bukit Uhud.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Masjid Nabawi awal di Madinah. Klik untuk memperbesar.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Masjid Nabawi awal di Madinah. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Masjid Nabawi Awal & Bukit Uhud -->
+              <!-- Ilustrasi Detail Berlapis: Masjid Nabawi Awal & Bukit Uhud -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Masjid Nabawi awal dari bata tanah liat dan batang kurma di Madinah">
                 <!-- Lapisan 1: Langit Pagi & Bukit Uhud -->
                 <g class="px-layer" data-depth="0.22">
@@ -604,16 +601,11 @@
                   <path d="M118 102 L188 122 L262 98 L294 134 L145 142 Z" fill="#8f583c" opacity="0.45"/>
                 </g>
 
-                <!-- Lapisan 2: Kompleks Masjid Nabawi Awal (Bata Tanah Liat & Tiang Kurma) -->
+                <!-- Lapisan 2: Kompleks Masjid Nabawi Awal -->
                 <g class="px-layer" data-depth="0.55">
-                  <!-- Tanah Gurun Madinah -->
                   <rect x="-20" y="156" width="440" height="160" fill="#e2c593"/>
-                  <!-- Bayangan Bangunan -->
                   <polygon points="84,228 312,228 346,254 58,254" fill="#9c753e" opacity="0.35"/>
-
-                  <!-- Dinding Belakang & Serambi Dalam (Suffah) -->
                   <rect x="92" y="124" width="212" height="58" fill="#9c7240"/>
-                  <!-- Atap Pelepah Kurma (Jarid) -->
                   <polygon points="86,124 310,124 302,138 94,138" fill="#6b4a23"/>
                   <!-- Tiang Batang Kurma di Serambi -->
                   <g fill="#4f3518">
@@ -623,28 +615,27 @@
                     <rect x="240" y="138" width="8" height="48"/>
                     <rect x="280" y="138" width="8" height="48"/>
                   </g>
-                  <!-- Pelataran Tengah Masjid -->
                   <rect x="94" y="182" width="208" height="46" fill="#ebd2a4"/>
-                  <!-- Dinding Depan & Samping Bata Tanah Liat (Libn) -->
                   <path d="M84 156 H102 V228 H84 Z M294 156 H312 V228 H294 Z" fill="url(#clay-wall)"/>
                   <path d="M84 196 H178 V228 H84 Z M218 196 H312 V228 H218 Z" fill="url(#clay-wall)"/>
-                  <!-- Pintu Kayu Sederhana -->
+                  <!-- Susunan Garis Bata Tanah Liat (Libn) -->
+                  <g stroke="#8f6736" stroke-width="0.9" opacity="0.55">
+                    <line x1="84" y1="206" x2="178" y2="206"/>
+                    <line x1="84" y1="216" x2="178" y2="216"/>
+                    <line x1="218" y1="206" x2="312" y2="206"/>
+                    <line x1="218" y1="216" x2="312" y2="216"/>
+                  </g>
                   <rect x="178" y="200" width="40" height="28" fill="#5c3d1e"/>
                   <line x1="198" y1="200" x2="198" y2="228" stroke="#36220f" stroke-width="1.5"/>
-                  <!-- Kasau Kayu Menjorok (Mirzab) -->
                   <g fill="#5c3d1e">
-                    <rect x="78" y="162" width="8" height="3"/>
-                    <rect x="78" y="172" width="8" height="3"/>
-                    <rect x="310" y="162" width="8" height="3"/>
-                    <rect x="310" y="172" width="8" height="3"/>
+                    <rect x="78" y="162" width="8" height="3"/><rect x="78" y="172" width="8" height="3"/>
+                    <rect x="310" y="162" width="8" height="3"/><rect x="310" y="172" width="8" height="3"/>
                   </g>
-                  <!-- Tekstur Bata Tanah Liat -->
                   <rect x="84" y="124" width="228" height="104" fill="#000" filter="url(#grain-tex)" opacity="0.32"/>
                 </g>
 
-                <!-- Lapisan 3: Kebun Kurma Oasis di Sekitar Masjid -->
+                <!-- Lapisan 3: Kebun Kurma Oasis -->
                 <g class="px-layer" data-depth="0.9">
-                  <!-- Pohon Kurma Kiri -->
                   <path d="M42 268 Q50 192 38 118" stroke="#5a3b1c" stroke-width="7" fill="none" stroke-linecap="round"/>
                   <g fill="#2b6b4d">
                     <path d="M38 118 Q6 102 -12 124 Q12 118 38 118"/>
@@ -652,7 +643,6 @@
                     <path d="M38 118 Q64 86 84 98 Q62 104 38 118"/>
                     <path d="M38 118 Q72 112 88 130 Q62 122 38 118"/>
                   </g>
-                  <!-- Pohon Kurma Kanan -->
                   <path d="M358 274 Q348 202 362 132" stroke="#5a3b1c" stroke-width="6.5" fill="none" stroke-linecap="round"/>
                   <g fill="#235c42">
                     <path d="M362 132 Q328 116 312 134 Q336 130 362 132"/>
@@ -660,7 +650,6 @@
                     <path d="M362 132 Q388 104 406 116 Q386 120 362 132"/>
                     <path d="M362 132 Q394 128 410 144 Q386 136 362 132"/>
                   </g>
-                  <!-- Semak Gurun Depan -->
                   <ellipse cx="122" cy="264" rx="18" ry="7" fill="#3a6b4c" opacity="0.7"/>
                   <ellipse cx="276" cy="268" rx="22" ry="8" fill="#3a6b4c" opacity="0.65"/>
                 </g>
@@ -677,7 +666,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Masjid Nabawi awal & latar Bukit Uhud · Klik pin untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Masjid Nabawi awal & latar Bukit Uhud · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -755,23 +744,21 @@
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
           <figure class="frame rounded-2xl p-3.5" data-title="Mushaf Standar Utsmani (651 M)" data-caption="Pembukuan dan penyatuan Mushaf Al-Qur'an di atas rehal kayu berukir, dilengkapi qalam bambu dan tempat tinta kuningan.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Mushaf Al-Qur'an di atas rehal kayu. Klik untuk memperbesar.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Mushaf Al-Qur'an di atas rehal kayu. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Mushaf Utsmani di atas Rehal Kayu -->
+              <!-- Ilustrasi Detail Berlapis: Mushaf Utsmani di atas Rehal Kayu -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Mushaf Al-Qur'an kuno di atas rehal kayu dengan tempat tinta kuningan dan qalam">
                 <!-- Lapisan 1: Ruang Kajian Hangat & Lentera -->
                 <g class="px-layer" data-depth="0.22">
                   <rect x="-20" y="-20" width="440" height="340" fill="url(#room-mushaf)"/>
-                  <!-- Lentera Kaca Hangat di Latar Belakang -->
                   <circle cx="94" cy="118" r="68" fill="url(#warm-glow)" class="flicker"/>
                   <rect x="76" y="88" width="36" height="58" rx="4" fill="#ffe9a6" opacity="0.35" stroke="#8a6212" stroke-width="1.5"/>
                   <path d="M94 104 Q102 118 94 128 Q86 118 94 104 Z" fill="#fff6d1" class="flicker"/>
-                  <!-- Gulungan Naskah di Kanan Belakang -->
                   <rect x="278" y="132" width="84" height="16" rx="4" fill="#6b3423" stroke="#d4a24c" stroke-width="0.8"/>
                   <rect x="284" y="116" width="76" height="16" rx="4" fill="#1d5c47" stroke="#d4a24c" stroke-width="0.8"/>
                 </g>
@@ -780,10 +767,8 @@
                 <g class="px-layer" data-depth="0.55">
                   <rect x="-20" y="218" width="440" height="95" fill="#21160d"/>
                   <line x1="-20" y1="218" x2="420" y2="218" stroke="#6e4d2e" stroke-width="2"/>
-                  <!-- Bayangan Rehal di Meja -->
                   <ellipse cx="200" cy="242" rx="112" ry="12" fill="#0d0805" opacity="0.65"/>
 
-                  <!-- Penyangga Rehal Kayu Ukir -->
                   <path d="M112 244 L184 184 L216 184 L288 244 L264 244 L200 194 L136 244 Z" fill="#6e4522"/>
                   <path d="M136 244 L200 194 L264 244 Z" fill="#3a220e"/>
 
@@ -801,7 +786,7 @@
                   <rect x="86" y="122" width="88" height="10" rx="2" fill="#d4a24c" opacity="0.45"/>
                   <rect x="226" y="122" width="88" height="10" rx="2" fill="#d4a24c" opacity="0.45"/>
 
-                  <!-- Baris Kaligrafi Hijazi Awal -->
+                  <!-- Baris Kaligrafi Hijazi Awal & Penanda Ayat Emas -->
                   <g stroke="#2a2219" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.82">
                     <path d="M88 142 Q124 134 172 139"/>
                     <path d="M88 153 Q132 145 174 150"/>
@@ -812,8 +797,11 @@
                     <path d="M228 161 Q268 156 312 164"/>
                     <path d="M230 172 Q270 167 310 175"/>
                   </g>
+                  <g fill="#d4a24c">
+                    <circle cx="118" cy="138" r="2.2"/><circle cx="144" cy="158" r="2.2"/>
+                    <circle cx="262" cy="138" r="2.2"/><circle cx="284" cy="160" r="2.2"/>
+                  </g>
 
-                  <!-- Halaman Perkamen yang Berbalik Halus -->
                   <path d="M203 110 Q254 90 298 108 L298 188 Q254 168 203 192 Z" fill="#fffdf6" stroke="#d4b886" stroke-width="1" class="page-turn"/>
                   <path d="M62 114 Q142 88 197 110 L197 192 Q142 170 62 196 Z" fill="#000" filter="url(#grain-tex)" opacity="0.24"/>
                 </g>
@@ -824,7 +812,6 @@
                   <path d="M68 236 H108 L103 255 Q88 260 73 255 Z" fill="url(#gold-metal)"/>
                   <ellipse cx="88" cy="236" rx="20" ry="5.5" fill="#fce49c"/>
                   <ellipse cx="88" cy="236" rx="11" ry="3" fill="#171310"/>
-                  <!-- Pena Bambu Qalam -->
                   <line x1="126" y1="262" x2="218" y2="232" stroke="#d9a85b" stroke-width="5" stroke-linecap="round"/>
                   <line x1="156" y1="252" x2="158" y2="256" stroke="#7d5324" stroke-width="1.5"/>
                   <polygon points="218,232 232,227 221,235" fill="#2b1e12"/>
@@ -842,7 +829,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Mushaf Standar Al-Qur'an & alat tulis klasik · Klik pin untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Mushaf Standar Al-Qur'an & alat tulis klasik · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -918,47 +905,41 @@
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
           <figure class="frame rounded-2xl p-3.5" data-title="Arsitektur Dinasti Umayyah (661–750 M)" data-caption="Deretan pelengkung batu ablaq di Damaskus dengan pilar marmer dan kubah emas Qubbatus Sakhrah di latar belakang.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Arsitektur Dinasti Umayyah. Klik untuk memperbesar.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Arsitektur Dinasti Umayyah. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Lengkung Ablaq Umayyah & Kubah Emas -->
+              <!-- Ilustrasi Detail Berlapis: Lengkung Ablaq Umayyah & Kubah Emas -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Lengkung ablaq Umayyah dan kubah emas Qubbatus Sakhrah">
                 <!-- Lapisan 1: Langit Damaskus & Kubah Emas Qubbatus Sakhrah -->
                 <g class="px-layer" data-depth="0.22">
                   <rect x="-20" y="-20" width="440" height="340" fill="url(#sky-umayyah)"/>
                   <circle cx="336" cy="54" r="44" fill="url(#warm-glow)" class="flicker"/>
                   <ellipse cx="118" cy="52" rx="54" ry="9" fill="#fff" opacity="0.65" class="drift"/>
-                  <!-- Monumen Qubbatus Sakhrah di Kejauhan -->
+                  <!-- Monumen Qubbatus Sakhrah -->
                   <rect x="234" y="156" width="68" height="44" fill="#296654"/>
                   <rect x="238" y="160" width="60" height="8" fill="#d4a24c" opacity="0.7"/>
                   <path d="M240 156 A28 30 0 0 1 296 156 Z" fill="url(#gold-metal)"/>
                   <line x1="268" y1="116" x2="268" y2="127" stroke="#8a6212" stroke-width="2"/>
-                  <!-- Pepohonan Cemara -->
                   <path d="M216 200 Q222 134 228 200 Z M308 200 Q314 130 320 200 Z" fill="#234f3f"/>
                 </g>
 
                 <!-- Lapisan 2: Serambi Lengkung Batu Ablaq & Pilar Marmer -->
                 <g class="px-layer" data-depth="0.55">
                   <rect x="-20" y="212" width="440" height="100" fill="#e6d5b5"/>
-                  <!-- Bayangan Pilar di Pelataran Marmer -->
                   <polygon points="52,212 68,212 108,266 88,266" fill="#8a6212" opacity="0.22"/>
                   <polygon points="164,212 180,212 220,266 200,266" fill="#8a6212" opacity="0.22"/>
                   <polygon points="276,212 292,212 332,266 312,266" fill="#8a6212" opacity="0.22"/>
 
-                  <!-- Dinding Atas Pelengkung -->
                   <path d="M22 68 H378 V212 H356 V132 A40 40 0 0 0 276 132 V212 H244 V132 A40 40 0 0 0 164 132 V212 H132 V132 A40 40 0 0 0 52 132 V212 H22 Z" fill="url(#stone-cream)"/>
-                  <!-- Susunan Batu Ablaq Dua Warna (Krem & Oker) -->
                   <path d="M52 132 A40 40 0 0 1 132 132 L122 132 A30 30 0 0 0 62 132 Z" fill="url(#stone-ochre)"/>
                   <path d="M164 132 A40 40 0 0 1 244 132 L234 132 A30 30 0 0 0 174 132 Z" fill="url(#stone-ochre)"/>
                   <path d="M276 132 A40 40 0 0 1 356 132 L346 132 A30 30 0 0 0 286 132 Z" fill="url(#stone-ochre)"/>
-                  <!-- Lis Ornamen Atas -->
                   <rect x="22" y="68" width="356" height="9" fill="url(#gold-metal)"/>
                   <rect x="30" y="82" width="340" height="5" fill="#2d6b58" opacity="0.65"/>
-                  <!-- Pilar Marmer Berurat -->
                   <g fill="#f7efe2" stroke="#b59b72" stroke-width="1">
                     <rect x="48" y="134" width="16" height="78"/>
                     <rect x="160" y="134" width="16" height="78"/>
@@ -988,7 +969,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Pelengkung ablaq & warisan arsitektur Umayyah · Klik pin untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Pelengkung ablaq & warisan arsitektur Umayyah · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -1065,26 +1046,23 @@
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
           <figure class="frame rounded-2xl p-3.5" data-title="Baitul Hikmah Baghdad & Astrolab (750–1258 M)" data-caption="Suasana ruang riset di Baitul Hikmah Baghdad dengan instrumen astronomi astrolab kuningan, manuskrip aljabar, dan lentera ilmu pengetahuan.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Baitul Hikmah di Baghdad. Klik untuk memperbesar.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Baitul Hikmah di Baghdad. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Baitul Hikmah Baghdad & Astrolab -->
+              <!-- Ilustrasi Detail Berlapis: Baitul Hikmah Baghdad & Astrolab -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Ruang penelitian Baitul Hikmah Baghdad dengan astrolab kuningan dan manuskrip ilmiah">
                 <!-- Lapisan 1: Arsitektur Perpustakaan Baghdad & Jendela Malam -->
                 <g class="px-layer" data-depth="0.22">
                   <rect x="-20" y="-20" width="440" height="340" fill="url(#room-abbasiyah)"/>
-                  <!-- Jendela Lengkung Runcing Menghadap Baghdad Malam -->
                   <path d="M44 196 V86 Q92 38 140 86 V196 Z" fill="#091612" stroke="#8a6212" stroke-width="2.5"/>
                   <circle cx="74" cy="86" r="1.4" fill="#fff" class="twinkle"/>
                   <circle cx="114" cy="74" r="1.2" fill="#f3d17f" class="twinkle d2"/>
-                  <!-- Siluet Kubah Baghdad di Kejauhan -->
                   <path d="M52 196 V164 Q76 144 100 164 V196 Z" fill="#132922"/>
                   <rect x="116" y="138" width="8" height="58" fill="#132922"/>
-                  <!-- Rak Kitab & Gulungan Besar di Kanan -->
                   <rect x="276" y="64" width="96" height="146" fill="#2e1e12" stroke="#5e3f23" stroke-width="2"/>
                   <line x1="276" y1="108" x2="372" y2="108" stroke="#5e3f23" stroke-width="2"/>
                   <line x1="276" y1="154" x2="372" y2="154" stroke="#5e3f23" stroke-width="2"/>
@@ -1094,7 +1072,6 @@
                   <g fill="#1d5c47">
                     <rect x="310" y="74" width="11" height="34"/><rect x="286" y="120" width="12" height="34"/><rect x="350" y="116" width="10" height="38"/>
                   </g>
-                  <!-- Pendar Cahaya Lentera -->
                   <circle cx="212" cy="76" r="76" fill="url(#warm-glow)" class="flicker"/>
                 </g>
 
@@ -1103,7 +1080,6 @@
                   <rect x="-20" y="210" width="440" height="100" fill="#2b1c10"/>
                   <line x1="-20" y1="210" x2="420" y2="210" stroke="#8a6212" stroke-width="2"/>
 
-                  <!-- Tumpukan Kitab Kulit di Kanan -->
                   <rect x="282" y="192" width="92" height="18" rx="3" fill="#1d5c47" stroke="#d4a24c" stroke-width="1"/>
                   <rect x="290" y="174" width="82" height="18" rx="3" fill="#8f3928" stroke="#d4a24c" stroke-width="1"/>
                   <line x1="302" y1="192" x2="302" y2="210" stroke="#f3d17f" stroke-width="1.5"/>
@@ -1115,7 +1091,6 @@
                   <circle cx="240" cy="138" r="40" fill="none" stroke="url(#gold-metal)" stroke-width="6"/>
                   <circle cx="240" cy="138" r="31" fill="none" stroke="#f3d17f" stroke-width="1.2" stroke-dasharray="3 2"/>
                   <circle cx="240" cy="128" r="17" fill="none" stroke="#d4a24c" stroke-width="1.5"/>
-                  <!-- Jarum Pengukur Alidade -->
                   <line x1="206" y1="160" x2="274" y2="116" stroke="#fff0b8" stroke-width="2.6" stroke-linecap="round"/>
                   <circle cx="240" cy="138" r="4" fill="#fff0b8"/>
                   <circle cx="240" cy="92" r="6" fill="none" stroke="#f3d17f" stroke-width="2.2"/>
@@ -1123,7 +1098,6 @@
 
                 <!-- Lapisan 3: Lentera Gantung & Gulungan Diagram Geometri -->
                 <g class="px-layer" data-depth="0.9">
-                  <!-- Lentera Gantung -->
                   <line x1="206" y1="-20" x2="206" y2="38" stroke="#b7862b" stroke-width="1.8"/>
                   <path d="M192 38 L220 38 L213 49 L199 49 Z" fill="url(#gold-metal)"/>
                   <path d="M195 49 Q188 72 200 88 H212 Q224 72 217 49 Z" fill="#ffe9a6" opacity="0.9" class="flicker"/>
@@ -1131,7 +1105,6 @@
                   <circle class="spark" cx="200" cy="62" r="1.5" fill="#fff7d6"/>
                   <circle class="spark s2" cx="214" cy="66" r="1.2" fill="#fff7d6"/>
 
-                  <!-- Gulungan Perkamen Diagram Aljabar & Geometri -->
                   <path d="M54 226 H226 L246 266 H34 Z" fill="url(#parchment)" stroke="#c9b082" stroke-width="1"/>
                   <circle cx="114" cy="245" r="13" fill="none" stroke="#1d5c47" stroke-width="1.4"/>
                   <polygon points="114,232 125,252 103,252" fill="none" stroke="#8a6212" stroke-width="1.2"/>
@@ -1152,7 +1125,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Baitul Hikmah Baghdad & astrolab · Klik pin untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Baitul Hikmah Baghdad & astrolab · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -1230,14 +1203,14 @@
       <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-5 lg:sticky lg:top-28">
           <figure class="frame rounded-2xl p-3.5" data-title="Jalur Pelayaran & Akulturasi Islam Nusantara (Abad ke-7–16 M)" data-caption="Kapal niaga kayu melintasi perairan Selat Malaka menuju pesisir Nusantara yang ditandai dengan masjid beratap tumpang.">
-            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Kapal Dagang dan Pesisir Nusantara. Klik untuk memperbesar.">
+            <div class="frame-stage" tabindex="0" role="button" aria-label="Ilustrasi Kapal Dagang dan Pesisir Nusantara. Klik untuk memperbesar dan memeriksa detail.">
               <div class="frame-glare"></div>
-              <button type="button" class="zoom-trigger" aria-label="Perbesar ilustrasi">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                Perbesar
+              <button type="button" class="zoom-trigger" aria-label="Perbesar dan inspeksi ilustrasi">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                Perbesar &amp; Inspeksi
               </button>
 
-              <!-- Ilustrasi Realistis Berlapis: Kapal Niaga Nusantara & Masjid Atap Tumpang -->
+              <!-- Ilustrasi Detail Berlapis: Kapal Niaga Nusantara & Masjid Atap Tumpang -->
               <svg viewBox="0 0 400 300" class="art-svg select-none" role="img" aria-label="Kapal layar kayu niaga di Selat Malaka dengan masjid beratap tumpang di pesisir Nusantara">
                 <!-- Lapisan 1: Langit Senja Tropis & Pesisir Nusantara -->
                 <g class="px-layer" data-depth="0.22">
@@ -1247,9 +1220,7 @@
                   <ellipse cx="114" cy="58" rx="48" ry="9" fill="#fff" opacity="0.6" class="drift"/>
                   <path class="bird" d="M54 84 q5 -5 10 0 q5 -5 10 0" stroke="#2c443c" stroke-width="1.6" fill="none"/>
 
-                  <!-- Bukit Tropis Pesisir -->
                   <path d="M-20 184 Q56 138 132 168 Q208 144 286 172 Q350 162 420 184 Z" fill="#467a69" opacity="0.72"/>
-                  <!-- Tanjung Pesisir & Masjid Beratap Tumpang Tiga -->
                   <path d="M276 184 Q335 170 420 182 V196 H276 Z" fill="#2d5949"/>
                   <g transform="translate(308, 138)">
                     <rect x="8" y="28" width="42" height="15" fill="#f5ede0"/>
@@ -1262,24 +1233,18 @@
                 <!-- Lapisan 2: Selat Malaka & Kapal Niaga Kayu Nusantara -->
                 <g class="px-layer" data-depth="0.55">
                   <rect x="-20" y="182" width="440" height="130" fill="url(#sea-deep)"/>
-                  <!-- Pantulan Cahaya Senja di Laut -->
                   <ellipse cx="316" cy="196" rx="52" ry="5" fill="#ffe7a3" opacity="0.5" class="shimmer"/>
                   <ellipse cx="308" cy="212" rx="34" ry="3.5" fill="#ffe7a3" opacity="0.38" class="shimmer s2"/>
 
-                  <!-- Kapal Layar Kayu Nusantara -->
                   <g class="bob">
                     <ellipse cx="168" cy="208" rx="84" ry="7" fill="#081f26" opacity="0.55"/>
-                    <!-- Tiang Layar -->
                     <rect x="156" y="54" width="5" height="126" fill="#3a2312"/>
                     <rect x="206" y="78" width="4" height="102" fill="#3a2312"/>
-                    <!-- Tali-temali & Cucur Depan -->
                     <line x1="158" y1="58" x2="78" y2="178" stroke="#3a2312" stroke-width="1.2" opacity="0.75"/>
                     <line x1="208" y1="80" x2="274" y2="174" stroke="#3a2312" stroke-width="1.2" opacity="0.75"/>
-                    <!-- Layar Kanvas Mengembang -->
                     <path d="M162 62 Q222 108 162 168 Z" fill="url(#parchment)" stroke="#b7862b" stroke-width="1"/>
                     <path d="M153 68 Q108 112 153 166 Z" fill="#ebd6ad" stroke="#b7862b" stroke-width="1"/>
                     <path d="M210 82 Q254 118 210 164 Z" fill="#f7ebd2" stroke="#b7862b" stroke-width="1"/>
-                    <!-- Lambung Kapal Jati -->
                     <path d="M78 178 Q168 190 268 172 L244 206 H102 Z" fill="#3d2412"/>
                     <path d="M84 181 Q168 192 260 175 L255 184 Q168 199 90 188 Z" fill="#b7862b"/>
                   </g>
@@ -1305,7 +1270,7 @@
                 <p class="hs-desc mt-1 text-xs leading-relaxed text-paper/90"></p>
               </div>
             </div>
-            <figcaption class="mt-3 text-center text-sm text-ink/75">Pelayaran niaga & masjid beratap tumpang Nusantara · Klik pin untuk detail</figcaption>
+            <figcaption class="mt-3 text-center text-sm text-ink/75">Pelayaran niaga & masjid beratap tumpang Nusantara · Klik ilustrasi untuk zoom detail</figcaption>
           </figure>
         </div>
 
@@ -1410,27 +1375,33 @@
 
   </main>
 
-  <!-- Modal Lightbox Layar Penuh (Terang, Tajam & Zoomable) -->
-  <div id="art-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-night/90 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-gold/40 bg-paper shadow-2xl">
-      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 bg-white/85 px-5 py-3.5">
-        <div>
-          <h3 id="modal-title" class="font-serif text-lg font-bold text-moss"></h3>
-          <p id="modal-caption" class="text-xs text-ink/75"></p>
+  <!-- Modal Lightbox Inspeksi Detail (Zoom Bertingkat 100%-350% + Geser/Pan) -->
+  <div id="art-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-night/90 p-3 sm:p-5 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="relative flex max-h-[94vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-gold/45 bg-paper shadow-2xl">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-ink/10 bg-white/90 px-4 py-3 sm:px-5">
+        <div class="min-w-0 flex-1">
+          <h3 id="modal-title" class="truncate font-serif text-base font-bold text-moss sm:text-lg"></h3>
+          <p id="modal-caption" class="truncate text-xs text-ink/75"></p>
         </div>
-        <div class="flex items-center gap-2">
-          <button id="modal-zoom-btn" type="button" class="rounded-lg border border-ink/20 bg-white px-3.5 py-1.5 text-xs font-bold text-ink transition hover:border-moss hover:text-moss">Perbesar 1.8x</button>
-          <button id="modal-close-btn" type="button" class="rounded-lg bg-night px-3.5 py-1.5 text-xs font-bold text-paper transition hover:bg-moss" aria-label="Tutup tampilan penuh">Tutup ✕</button>
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <button id="modal-zoom-out" type="button" class="rounded-lg border border-ink/20 bg-white px-2.5 py-1.5 text-xs font-bold text-ink transition hover:border-moss hover:text-moss disabled:opacity-40" title="Perkecil">−</button>
+          <span id="modal-zoom-level" class="min-w-[3.4rem] rounded-md bg-moss/10 px-2 py-1 text-center text-xs font-bold text-moss">100%</span>
+          <button id="modal-zoom-in" type="button" class="rounded-lg border border-ink/20 bg-white px-2.5 py-1.5 text-xs font-bold text-ink transition hover:border-moss hover:text-moss disabled:opacity-40" title="Perbesar">+</button>
+          <button id="modal-zoom-reset" type="button" class="rounded-lg border border-ink/20 bg-white px-2.5 py-1.5 text-xs font-semibold text-ink/80 transition hover:border-moss hover:text-moss">Reset</button>
+          <button id="modal-close-btn" type="button" class="ml-1 rounded-lg bg-night px-3.5 py-1.5 text-xs font-bold text-paper transition hover:bg-moss" aria-label="Tutup tampilan penuh">Tutup ✕</button>
         </div>
       </div>
 
-      <!-- Area Kanvas Ilustrasi Penuh -->
-      <div id="modal-viewport" class="relative flex flex-1 items-center justify-center overflow-hidden bg-[#13221c] p-3" style="min-height: 320px;">
-        <div id="modal-canvas" class="w-full max-w-2xl overflow-hidden rounded-xl shadow-2xl transition-transform duration-300 ease-out" style="aspect-ratio: 4 / 3; transform-origin: center center;"></div>
+      <!-- Area Kanvas Ilustrasi Penuh yang Bisa Di-Zoom & Di-Geser -->
+      <div id="modal-viewport" class="relative flex flex-1 items-center justify-center overflow-hidden bg-[#13221c] p-3" style="min-height: 330px;">
+        <div id="modal-canvas" class="w-full max-w-2xl overflow-hidden rounded-xl shadow-2xl" style="aspect-ratio: 4 / 3; transform-origin: center center; will-change: transform;"></div>
+        <div id="modal-hint" class="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-night/80 px-3.5 py-1 text-[11px] font-medium text-paper/85 backdrop-blur">
+          Gunakan tombol +/− atau roda mouse untuk zoom · Seret gambar untuk menggeser
+        </div>
       </div>
 
       <!-- Catatan Detail Sejarah dari Pin Hotspot -->
-      <div id="modal-notes" class="grid gap-3 border-t border-ink/10 bg-paper px-5 py-4 text-xs sm:grid-cols-2"></div>
+      <div id="modal-notes" class="grid gap-3 border-t border-ink/10 bg-paper px-4 py-3.5 text-xs sm:grid-cols-2 sm:px-5"></div>
     </div>
   </div>
 
@@ -1455,10 +1426,10 @@
     const finishBanner = document.getElementById('finish-banner');
     const finalScoreText = document.getElementById('final-score-text');
 
-    const quizState = JSON.parse(localStorage.getItem('sejarah_islam_quiz_v2') || '{}');
+    const quizState = JSON.parse(localStorage.getItem('sejarah_islam_quiz_v3') || '{}');
 
     function saveQuizState() {
-      localStorage.setItem('sejarah_islam_quiz_v2', JSON.stringify(quizState));
+      localStorage.setItem('sejarah_islam_quiz_v3', JSON.stringify(quizState));
     }
 
     // 1. Navigasi Antar 6 Halaman
@@ -1624,19 +1595,46 @@
     document.getElementById('reset-all-btn').addEventListener('click', resetAllQuizzes);
     document.getElementById('finish-reset-btn').addEventListener('click', resetAllQuizzes);
 
-    // 3. Interaksi Realistis: 3D Tilt, Glare Kaca, Parallax Berlapis, Hotspot, & Lightbox Zoom
+    // 3. Interaksi Realistis & Lightbox Zoom Bertingkat + Drag/Pan
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const modal = document.getElementById('art-modal');
     const modalTitle = document.getElementById('modal-title');
     const modalCaption = document.getElementById('modal-caption');
     const modalCanvas = document.getElementById('modal-canvas');
     const modalNotes = document.getElementById('modal-notes');
-    const modalZoomBtn = document.getElementById('modal-zoom-btn');
     const modalViewport = document.getElementById('modal-viewport');
-    let isZoomed = false;
+    const modalZoomLevel = document.getElementById('modal-zoom-level');
+    const zoomInBtn = document.getElementById('modal-zoom-in');
+    const zoomOutBtn = document.getElementById('modal-zoom-out');
+    const zoomResetBtn = document.getElementById('modal-zoom-reset');
+
+    let zoomScale = 1;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragMoved = false;
+
+    function updateModalTransform(smooth = true) {
+      modalCanvas.style.transition = smooth ? 'transform 0.22s cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
+      if (zoomScale <= 1) {
+        panX = 0;
+        panY = 0;
+      }
+      modalCanvas.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${zoomScale})`;
+      modalZoomLevel.textContent = `${Math.round(zoomScale * 100)}%`;
+      zoomOutBtn.disabled = zoomScale <= 1;
+      zoomInBtn.disabled = zoomScale >= 3.5;
+      modalViewport.classList.toggle('is-zoomed', zoomScale > 1);
+    }
+
+    function setZoom(nextScale) {
+      zoomScale = Math.max(1, Math.min(3.5, Number(nextScale.toFixed(2))));
+      updateModalTransform(true);
+    }
 
     function openLightbox(figureEl) {
-      // Ambil khusus ilustrasi utama (.art-svg), bukan ikon tombol
       const mainArt = figureEl.querySelector('svg.art-svg');
       const pins = figureEl.querySelectorAll('.hotspot-pin');
 
@@ -1655,15 +1653,15 @@
       modalNotes.innerHTML = '';
       pins.forEach((pin, idx) => {
         const item = document.createElement('div');
-        item.className = 'rounded-lg border border-ink/10 bg-white/85 p-3';
+        item.className = 'rounded-lg border border-ink/10 bg-white/90 p-3';
         item.innerHTML = `<p class="font-bold text-moss">${idx + 1}. ${pin.dataset.hsTitle}</p><p class="mt-1 text-ink/85 leading-relaxed">${pin.dataset.hsDesc}</p>`;
         modalNotes.appendChild(item);
       });
 
-      isZoomed = false;
-      modalCanvas.style.transform = 'scale(1)';
-      modalCanvas.style.transformOrigin = 'center center';
-      modalZoomBtn.textContent = 'Perbesar 1.8x';
+      zoomScale = 1;
+      panX = 0;
+      panY = 0;
+      updateModalTransform(false);
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -1676,19 +1674,50 @@
       document.body.style.overflow = '';
     }
 
-    modalZoomBtn.addEventListener('click', () => {
-      isZoomed = !isZoomed;
-      modalCanvas.style.transform = isZoomed ? 'scale(1.8)' : 'scale(1)';
-      modalCanvas.style.transformOrigin = 'center center';
-      modalZoomBtn.textContent = isZoomed ? 'Ukuran Normal (1x)' : 'Perbesar 1.8x';
+    zoomInBtn.addEventListener('click', () => setZoom(zoomScale + 0.6));
+    zoomOutBtn.addEventListener('click', () => setZoom(zoomScale - 0.6));
+    zoomResetBtn.addEventListener('click', () => {
+      zoomScale = 1;
+      panX = 0;
+      panY = 0;
+      updateModalTransform(true);
     });
 
-    modalViewport.addEventListener('mousemove', e => {
-      if (!isZoomed) return;
-      const rect = modalViewport.getBoundingClientRect();
-      const xPct = ((e.clientX - rect.left) / rect.width) * 100;
-      const yPct = ((e.clientY - rect.top) / rect.height) * 100;
-      modalCanvas.style.transformOrigin = `${xPct}% ${yPct}%`;
+    modalViewport.addEventListener('wheel', e => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 0.35 : -0.35;
+      setZoom(zoomScale + delta);
+    }, { passive: false });
+
+    modalViewport.addEventListener('pointerdown', e => {
+      if (zoomScale <= 1) return;
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = e.clientX - panX;
+      dragStartY = e.clientY - panY;
+      modalViewport.classList.add('is-dragging');
+      modalViewport.setPointerCapture(e.pointerId);
+    });
+
+    modalViewport.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      const nextX = e.clientX - dragStartX;
+      const nextY = e.clientY - dragStartY;
+      if (Math.abs(nextX - panX) > 3 || Math.abs(nextY - panY) > 3) dragMoved = true;
+      panX = nextX;
+      panY = nextY;
+      updateModalTransform(false);
+    });
+
+    modalViewport.addEventListener('pointerup', e => {
+      if (isDragging) {
+        isDragging = false;
+        modalViewport.classList.remove('is-dragging');
+        modalViewport.releasePointerCapture(e.pointerId);
+      }
+      if (!dragMoved && zoomScale === 1) {
+        setZoom(1.8);
+      }
     });
 
     document.getElementById('modal-close-btn').addEventListener('click', closeLightbox);
@@ -1707,7 +1736,6 @@
       const hsClose = card.querySelector('.hs-close');
       const zoomBtn = stage.querySelector('.zoom-trigger');
 
-      // Efek 3D Tilt + Pantulan Cahaya + Multi-Layer Parallax
       stage.addEventListener('pointermove', e => {
         if (prefersReducedMotion || e.pointerType === 'touch') return;
         const rect = stage.getBoundingClientRect();
@@ -1734,7 +1762,6 @@
         layers.forEach(layer => { layer.style.transform = ''; });
       });
 
-      // Interaksi Pin Hotspot Sejarah
       pins.forEach(pin => {
         pin.addEventListener('click', e => {
           e.stopPropagation();
@@ -1759,7 +1786,6 @@
 
       card.addEventListener('click', e => e.stopPropagation());
 
-      // Buka Lightbox Zoom
       zoomBtn.addEventListener('click', e => {
         e.stopPropagation();
         openLightbox(figure);
