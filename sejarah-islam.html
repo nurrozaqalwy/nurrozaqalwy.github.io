@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sejarah Islam | Media Pembelajaran</title>
+  <meta name="description" content="Materi ringkas sejarah Islam dengan ilustrasi, dari masa Nabi Muhammad SAW hingga masuknya Islam ke Nusantara." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            paper: '#f7f3ea',
+            ink: '#1f2a24',
+            night: '#0d1b17',
+            moss: '#1d5c47',
+            gold: '#d4a24c',
+            bronze: '#8a6212'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; }
+    a:focus-visible { outline: 2px solid #d4a24c; outline-offset: 3px; border-radius: 4px; }
+    .nav-chip.active { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .pattern {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%23d4a24c' stroke-opacity='.14'/%3E%3C/svg%3E");
+    }
+    .frame { background: linear-gradient(160deg, #fffdf7, #efe6d2); box-shadow: inset 0 0 0 1px rgba(31,42,36,.08), 0 18px 40px -20px rgba(13,27,23,.35); }
+    .quiz-btn { width: 100%; text-align: left; border: 1px solid rgba(31,42,36,.2); background: #fff; border-radius: .5rem; padding: .75rem 1rem; font-weight: 600; transition: border-color .2s, background-color .2s; }
+    .quiz-btn:not(:disabled):hover { border-color: #1d5c47; }
+    .quiz-btn.ok { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .quiz-btn.bad { background: #9b3b2b; border-color: #9b3b2b; color: #fff; }
+    .quiz-feedback.good { color: #1d5c47; }
+    .quiz-feedback.bad { color: #9b3b2b; }
+    .twinkle { animation: twinkle 3s ease-in-out infinite; }
+    .twinkle.d2 { animation-delay: 1.2s; }
+    @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+    .drift { animation: drift 12s ease-in-out infinite alternate; }
+    @keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(14px); } }
+    .flicker { transform-box: fill-box; transform-origin: center; animation: flicker 2.6s ease-in-out infinite; }
+    @keyframes flicker { 0%, 100% { opacity: .85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+    .bob { transform-box: fill-box; transform-origin: center; animation: bob 4s ease-in-out infinite; }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4px) rotate(1deg); } }
+    .wave { animation: wave 3.6s linear infinite; }
+    .wave2 { animation: wave 6s linear infinite reverse; }
+    @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-60px); } }
+    .page-turn { transform-origin: 122px 100px; animation: pageturn 6s ease-in-out infinite; }
+    @keyframes pageturn { 0%, 40% { transform: scaleX(1); } 55%, 70% { transform: scaleX(.12); } 85%, 100% { transform: scaleX(1); } }
+    .spark { animation: spark 2.8s ease-out infinite; }
+    .spark.s2 { animation-delay: 1.4s; }
+    @keyframes spark { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-34px); opacity: 0; } }
+    figure.frame { transition: transform .4s ease, box-shadow .4s ease; }
+    figure.frame:hover { transform: translateY(-4px); }
+    figure.frame:hover .flicker { animation-duration: 1.2s; }
+    figure.frame:hover .drift { animation-duration: 6s; }
+    .js figure.frame { opacity: 0; translate: 0 24px; transition: opacity .8s ease, translate .8s ease, transform .4s ease, box-shadow .4s ease; }
+    .js figure.frame.in { opacity: 1; translate: 0 0; }
+    .bird { animation: fly 14s linear infinite; }
+    .bird.b2 { animation-delay: 5s; }
+    .bird.b3 { animation-delay: 9s; }
+    @keyframes fly { 0% { transform: translateX(-140px); opacity: 0; } 10%, 90% { opacity: 1; } 100% { transform: translateX(120px); opacity: 0; } }
+    .shoot { animation: shoot 7s ease-in infinite; }
+    @keyframes shoot { 0%, 80% { transform: translate(0, 0); opacity: 0; } 85% { opacity: 1; } 100% { transform: translate(120px, 40px); opacity: 0; } }
+    .shimmer { animation: shimmer 3s ease-in-out infinite; }
+    .shimmer.s2 { animation-delay: 1s; }
+    .shimmer.s3 { animation-delay: 2s; }
+    @keyframes shimmer { 0%, 100% { opacity: .1; } 50% { opacity: .7; } }
+    .spark.s3 { animation-delay: .7s; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; } }
+  </style>
+</head>
+<body class="bg-paper font-sans text-ink antialiased">
+
+  <!-- Definisi gradasi untuk ilustrasi -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="day" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0d2"/><stop offset="1" stop-color="#f6eed9"/></linearGradient>
+      <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20453a"/><stop offset="1" stop-color="#0d1b17"/></linearGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d17f"/><stop offset="1" stop-color="#b7862b"/></linearGradient>
+      <linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9a78"/><stop offset="1" stop-color="#1d5c47"/></linearGradient>
+      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e7cc"/><stop offset="1" stop-color="#d6bd8c"/></linearGradient>
+      <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8cc3cf"/><stop offset="1" stop-color="#2c6e7a"/></linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#f3d17f" stop-opacity=".7"/><stop offset="1" stop-color="#f3d17f" stop-opacity="0"/></radialGradient>
+    </defs>
+  </svg>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-ink/10 bg-paper/95 backdrop-blur" style="padding-top: env(safe-area-inset-top, 0px)">
+    <div class="mx-auto max-w-4xl px-5 pt-4">
+      <p class="font-serif text-lg font-bold text-moss">Sejarah Islam <span id="progress-text" class="ml-2 font-sans text-sm font-normal text-ink/60">Dibaca 0/6 · Kuis 0/6</span></p>
+      <nav aria-label="Daftar bagian" class="-mx-5 mt-3 flex gap-2 overflow-x-auto px-5 pb-3 text-sm font-semibold">
+        <a href="#makkah" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Makkah</a>
+        <a href="#hijrah" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Madinah</a>
+        <a href="#khulafaur" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Khulafaur Rasyidin</a>
+        <a href="#umayyah" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Umayyah</a>
+        <a href="#abbasiyah" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Abbasiyah</a>
+        <a href="#nusantara" class="nav-chip shrink-0 rounded-full border border-ink/20 px-3.5 py-1.5">Nusantara</a>
+      </nav>
+    </div>
+    <div class="h-1 w-full bg-ink/10"><div id="bar" class="h-1 bg-gold transition-all duration-500" style="width: 0%"></div></div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="pattern relative overflow-hidden bg-night text-paper">
+      <div class="mx-auto max-w-4xl px-5 pb-14 pt-16 sm:pt-24">
+        <span class="inline-block rounded-full border border-gold/50 px-3 py-1 text-xs font-semibold text-gold">Materi tingkat SMA dengan ilustrasi</span>
+        <h1 class="mt-6 font-serif text-5xl font-bold leading-tight sm:text-6xl">Sejarah Islam</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-paper/80">Perjalanan Islam dari masa Nabi Muhammad SAW hingga masuk dan berkembang di Nusantara. Baca setiap bagian, lihat ilustrasinya, lalu jawab kuis singkat di akhir setiap bagian.</p>
+
+        <!-- Garis waktu ringkas -->
+        <div class="mt-12 grid grid-cols-3 gap-1 text-center text-xs sm:grid-cols-6">
+          <a href="#makkah" class="rounded-t-md border-t-4 border-[#3f9a78] bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Makkah</span><span class="text-paper/60">570–622</span></a>
+          <a href="#hijrah" class="rounded-t-md border-t-4 border-[#4aa984] bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Madinah</span><span class="text-paper/60">622–632</span></a>
+          <a href="#khulafaur" class="rounded-t-md border-t-4 border-[#8fb94a] bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Khulafaur</span><span class="text-paper/60">632–661</span></a>
+          <a href="#umayyah" class="rounded-t-md border-t-4 border-gold bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Umayyah</span><span class="text-paper/60">661–750</span></a>
+          <a href="#abbasiyah" class="rounded-t-md border-t-4 border-[#c98f2e] bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Abbasiyah</span><span class="text-paper/60">750–1258</span></a>
+          <a href="#nusantara" class="rounded-t-md border-t-4 border-[#e0b15a] bg-white/5 px-2 py-3 transition hover:bg-white/10"><span class="block font-semibold text-paper">Nusantara</span><span class="text-paper/60">Abad ke-7–13</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Makkah -->
+    <article id="makkah" class="mx-auto max-w-4xl scroll-mt-28 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Gua Hira di malam hari">
+            <rect width="240" height="180" fill="url(#night)"/>
+            <g class="twinkle"><circle cx="40" cy="30" r="1.5" fill="#fff"/><circle cx="90" cy="18" r="1.2" fill="#fff"/><circle cx="130" cy="44" r="1" fill="#fff"/></g>
+            <g class="twinkle d2"><circle cx="170" cy="22" r="1.5" fill="#fff"/><circle cx="215" cy="70" r="1.2" fill="#fff"/></g>
+            <circle cx="190" cy="40" r="34" fill="url(#glow)" class="flicker"/>
+            <circle cx="190" cy="40" r="15" fill="url(#gold)"/>
+            <ellipse cx="60" cy="58" rx="46" ry="6" fill="#cfe6dc" opacity=".14" class="drift"/>
+            <line class="shoot" x1="150" y1="22" x2="168" y2="34" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M0 150 L70 70 L110 115 L140 85 L240 150 V180 H0 Z" fill="url(#green)"/>
+            <path d="M70 70 L110 115 L84 122 Z" fill="#000" opacity=".15"/>
+            <path d="M86 100 Q98 78 110 100 Z" fill="#0d1b17"/>
+            <circle cx="98" cy="97" r="7" fill="#f3d17f" class="flicker"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Gua Hira, tempat wahyu pertama turun</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">1. Masa Makkah</h2>
+          <p class="mt-1 font-semibold text-bronze">570–622 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Nabi Muhammad SAW lahir di Makkah sekitar tahun 570 M, dari keluarga Bani Hasyim yang terhormat di kalangan suku Quraisy. Makkah pada masa itu menjadi pusat perdagangan dan tempat Ka’bah berdiri, sehingga kota ini ramai dengan berbagai kepercayaan. Pada usia sekitar 40 tahun, tepatnya tahun 610 M, beliau menerima wahyu pertama di Gua Hira. Wahyu itu dimulai dengan perintah “iqra’” atau “bacalah”.</p>
+            <p>Pada awalnya dakwah dilakukan secara diam-diam selama kurang lebih tiga tahun, lalu secara terbuka. Dakwah ini mendapat penolakan keras dari para pemimpin Quraisy yang khawatir kehilangan pengaruh ekonomi dan sosial. Tekanan memuncak dengan pemboikotan terhadap Bani Hasyim, wafatnya Khadijah dan Abu Thalib sekitar tahun 619 M yang dikenal sebagai ‘Amul Huzn atau tahun kesedihan, serta penyiksaan terhadap para pengikut. Sebagian pengikut kemudian hijrah ke Habasyah, dan Nabi akhirnya pindah ke Madinah.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Wahyu pertama turun di Gua Hira sekitar tahun 610 M.</li>
+              <li>Dakwah di Makkah menghadapi tekanan yang berat.</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="makkah" data-explain="Wahyu pertama turun di Gua Hira pada sekitar tahun 610 M.">
+            <p class="font-semibold text-moss">Uji diri: di gua mana wahyu pertama turun?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Gua Tsur</button>
+              <button type="button" class="quiz-btn" data-correct="true">Gua Hira</button>
+              <button type="button" class="quiz-btn" data-correct="false">Masjid Quba</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Madinah -->
+    <article id="hijrah" class="mx-auto max-w-4xl scroll-mt-28 border-t border-ink/10 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Masjid di Madinah">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="60" cy="34" r="30" fill="url(#glow)" class="flicker"/>
+            <circle cx="60" cy="34" r="12" fill="url(#gold)"/>
+            <ellipse cx="150" cy="46" rx="34" ry="7" fill="#fff" opacity=".7" class="drift"/>
+            <ellipse cx="200" cy="72" rx="22" ry="5" fill="#fff" opacity=".6" class="drift"/>
+            <path class="bird" d="M120 60 q4 -4 8 0 q4 -4 8 0" stroke="#1f2a24" stroke-width="1.6" fill="none"/>
+            <path class="bird b2" d="M96 78 q3 -3 6 0 q3 -3 6 0" stroke="#1f2a24" stroke-width="1.4" fill="none"/>
+            <rect y="132" width="240" height="48" fill="url(#sand)"/>
+            <path d="M74 132 A46 46 0 0 1 166 132 Z" fill="url(#gold)"/>
+            <path d="M120 86 A46 46 0 0 1 166 132 L120 132 Z" fill="#8a6212" opacity=".25"/>
+            <rect x="28" y="70" width="12" height="62" fill="url(#sand)"/>
+            <path d="M26 70 Q34 40 42 70 Z" fill="url(#gold)"/>
+            <rect x="200" y="70" width="12" height="62" fill="url(#sand)"/>
+            <path d="M198 70 Q206 40 214 70 Z" fill="url(#gold)"/>
+            <rect y="160" width="240" height="20" fill="#2f7a5f" opacity=".35"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Masjid di Madinah (ilustrasi sederhana)</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">2. Hijrah dan Madinah</h2>
+          <p class="mt-1 font-semibold text-bronze">622–632 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Pada tahun 622 M, Nabi dan para sahabat berhijrah ke Madinah. Peristiwa ini menjadi titik balik dakwah Islam sekaligus awal kalender Hijriah. Penduduk Madinah terdiri atas suku Aus dan Khazraj yang telah memeluk Islam, serta kelompok Yahudi dan suku-suku lain. Untuk mengatur kehidupan bersama, disusun Piagam Madinah yang berisi kesepakatan tentang hak, kewajiban, dan kerja sama antarkelompok.</p>
+            <p>Pada periode ini kaum Muslim menghadapi sejumlah peristiwa penting, seperti Perang Badar (624 M), Perang Uhud (625 M), Perang Khandaq (627 M), dan Fathu Makkah (630 M) yang membuka jalan bagi penyebaran Islam lebih luas. Nabi wafat di Madinah pada tahun 632 M, dan sejak saat itu umat Islam menghadapi tantangan baru dalam menentukan kepemimpinan.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Hijrah tahun 622 M menjadi awal kalender Hijriah.</li>
+              <li>Piagam Madinah mengatur kehidupan bersama antarpenduduk.</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="hijrah" data-explain="Hijrah ke Madinah pada tahun 622 M menjadi awal kalender Hijriah.">
+            <p class="font-semibold text-moss">Uji diri: peristiwa apa yang menjadi awal kalender Hijriah?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Wafatnya Nabi</button>
+              <button type="button" class="quiz-btn" data-correct="true">Hijrah ke Madinah</button>
+              <button type="button" class="quiz-btn" data-correct="false">Fathu Makkah</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Khulafaur Rasyidin -->
+    <article id="khulafaur" class="mx-auto max-w-4xl scroll-mt-28 border-t border-ink/10 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Mushaf Al-Qur’an terbuka">
+            <rect width="240" height="180" fill="url(#sand)"/>
+            <circle cx="120" cy="96" r="78" fill="url(#glow)" class="flicker"/>
+            <path d="M24 84 Q88 62 120 80 L120 140 Q88 122 24 142 Z" fill="#1d5c47"/>
+            <path d="M216 84 Q152 62 120 80 L120 140 Q152 122 216 142 Z" fill="#1d5c47"/>
+            <path d="M30 82 Q88 64 118 78 L118 136 Q88 120 30 136 Z" fill="#fffdf6"/>
+            <path d="M210 82 Q152 64 122 78 L122 136 Q152 120 210 136 Z" fill="#fffdf6"/>
+            <path d="M42 98 Q68 92 98 98 M42 110 Q68 104 98 110 M42 122 Q68 116 98 122 M142 98 Q170 92 198 98 M142 110 Q170 104 198 110 M142 122 Q170 116 198 122" stroke="#3f9a78" stroke-width="2.5" fill="none"/>
+            <path d="M122 78 Q152 64 180 76 L180 136 Q152 120 122 136 Z" fill="#fffdf6" stroke="#d6bd8c" stroke-width="1" class="page-turn"/>
+            <circle cx="120" cy="50" r="9" fill="url(#gold)" class="flicker"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Mushaf Al-Qur’an</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">3. Khulafaur Rasyidin</h2>
+          <p class="mt-1 font-semibold text-bronze">632–661 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Setelah Nabi wafat, kepemimpinan umat dilanjutkan oleh empat khalifah, yaitu Abu Bakar, Umar bin Khattab, Utsman bin Affan, dan Ali bin Abi Thalib. Abu Bakar menghadapi gerakan murtad dan orang-orang yang menolak membayar zakat, lalu memerintahkan pengumpulan Al-Qur’an. Umar memperluas wilayah Islam hingga ke Persia dan Syam, serta menetapkan kalender Hijriah sebagai penanggalan resmi.</p>
+            <p>Pada masa Utsman, perbedaan bacaan Al-Qur’an antarwilayah mendorong penyusunan satu mushaf standar yang kemudian disebarkan ke berbagai daerah. Pemerintahan Ali diwarnai konflik politik, seperti Perang Jamal dan Perang Shiffin, yang meninggalkan perpecahan dalam tubuh umat. Perbedaan pandangan politik pada masa ini kelak berkembang menjadi aliran-aliran dalam Islam.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Abu Bakar memerintahkan pengumpulan Al-Qur’an.</li>
+              <li>Utsman bin Affan menetapkan mushaf standar.</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="khulafaur" data-explain="Utsman bin Affan menetapkan satu mushaf standar untuk umat.">
+            <p class="font-semibold text-moss">Uji diri: khalifah mana yang menetapkan mushaf standar Al-Qur’an?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Abu Bakar</button>
+              <button type="button" class="quiz-btn" data-correct="true">Utsman bin Affan</button>
+              <button type="button" class="quiz-btn" data-correct="false">Ali bin Abi Thalib</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Umayyah -->
+    <article id="umayyah" class="mx-auto max-w-4xl scroll-mt-28 border-t border-ink/10 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Deretan lengkung bangunan Umayyah">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="196" cy="38" r="22" fill="url(#glow)" class="flicker"/>
+            <path d="M22 150 V84 A28 28 0 0 1 78 84 V150 Z" fill="url(#sand)"/>
+            <path d="M92 150 V84 A28 28 0 0 1 148 84 V150 Z" fill="url(#sand)"/>
+            <path d="M162 150 V84 A28 28 0 0 1 218 84 V150 Z" fill="url(#sand)"/>
+            <path d="M50 84 A28 28 0 0 1 78 84 V150 H50 Z" fill="#8a6212" opacity=".18"/>
+            <path d="M120 84 A28 28 0 0 1 148 84 V150 H120 Z" fill="#8a6212" opacity=".18"/>
+            <path d="M190 84 A28 28 0 0 1 218 84 V150 H190 Z" fill="#8a6212" opacity=".18"/>
+            <rect x="-40" y="40" width="50" height="130" fill="#0d1b17" opacity=".12" class="drift"/>
+            <rect y="150" width="240" height="30" fill="url(#green)"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Lengkung khas arsitektur Umayyah</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">4. Dinasti Umayyah</h2>
+          <p class="mt-1 font-semibold text-bronze">661–750 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Muawiyah bin Abi Sufyan mendirikan Dinasti Umayyah pada tahun 661 M dan memindahkan pusat pemerintahan ke Damaskus. Sistem kekhalifahan pada masa ini bersifat turun-temurun, berbeda dengan pemilihan khalifah pada masa sebelumnya. Wilayah Islam membentang dari Andalusia di barat, yang ditaklukkan pada 711 M, hingga Sind dan Asia Tengah di timur.</p>
+            <p>Pada masa Abdul Malik bin Marwan, administrasi pemerintahan ditata lebih rapi dan mata uang Islam, yaitu dinar dan dirham, mulai dicetak dengan tulisan Arab. Dinasti ini juga membangun bangunan penting, seperti Qubbatus Sakhrah di Yerusalem dan Masjid Agung Umayyah di Damaskus. Pemerintahan Umayyah berakhir pada tahun 750 M setelah dikalahkan oleh kelompok yang kemudian mendirikan Dinasti Abbasiyah.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Ibu kota pemerintahan berada di Damaskus.</li>
+              <li>Wilayah kekuasaannya sangat luas.</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="umayyah" data-explain="Pusat pemerintahan Dinasti Umayyah berada di Damaskus.">
+            <p class="font-semibold text-moss">Uji diri: di kota mana pusat pemerintahan Dinasti Umayyah?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Baghdad</button>
+              <button type="button" class="quiz-btn" data-correct="true">Damaskus</button>
+              <button type="button" class="quiz-btn" data-correct="false">Kairo</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Abbasiyah -->
+    <article id="abbasiyah" class="mx-auto max-w-4xl scroll-mt-28 border-t border-ink/10 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Tumpukan buku dan lampu">
+            <rect width="240" height="180" fill="url(#night)"/>
+            <circle cx="176" cy="60" r="46" fill="url(#glow)" class="flicker"/>
+            <path d="M176 34 Q190 58 176 76 Q162 58 176 34 Z" fill="url(#gold)" class="flicker"/>
+            <rect x="167" y="76" width="18" height="6" rx="1" fill="#b7862b"/>
+            <circle class="spark" cx="172" cy="44" r="1.6" fill="#f3d17f"/>
+            <circle class="spark s2" cx="182" cy="46" r="1.2" fill="#f3d17f"/>
+            <circle class="spark s3" cx="160" cy="52" r="1" fill="#f3d17f"/>
+            <ellipse cx="110" cy="158" rx="82" ry="4" fill="#000" opacity=".35"/>
+            <rect x="44" y="140" width="130" height="14" rx="2" fill="url(#green)"/>
+            <rect x="54" y="124" width="112" height="14" rx="2" fill="url(#gold)"/>
+            <rect x="40" y="108" width="118" height="14" rx="2" fill="url(#sand)"/>
+            <rect x="62" y="92" width="96" height="14" rx="2" fill="url(#green)"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Ilmu pengetahuan berkembang pesat</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">5. Dinasti Abbasiyah</h2>
+          <p class="mt-1 font-semibold text-bronze">750–1258 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Dinasti Abbasiyah berdiri pada tahun 750 M dan memindahkan pusat pemerintahan ke Baghdad, kota yang dibangun oleh Khalifah al-Mansur pada 762 M. Masa ini dikenal sebagai masa keemasan ilmu pengetahuan. Pada masa al-Ma’mun, Baitul Hikmah dikembangkan sebagai pusat penerjemahan dan penelitian. Karya dari Yunani, Persia, dan India diterjemahkan ke bahasa Arab, lalu dikaji dan dikembangkan oleh para ilmuwan Muslim.</p>
+            <p>Di antara tokoh terkenalnya adalah al-Khwarizmi yang mengembangkan ilmu aljabar, Ibnu Sina yang menulis kitab kedokteran berpengaruh, dan al-Razi yang dikenal di bidang kedokteran dan kimia. Namun, kekuasaan Abbasiyah kemudian melemah karena konflik internal dan munculnya dinasti-dinasti lain di berbagai wilayah. Dinasti ini berakhir ketika Baghdad dihancurkan pasukan Mongol pada tahun 1258 M.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Baghdad menjadi pusat ilmu pengetahuan.</li>
+              <li>Tokoh terkenal: al-Khwarizmi (aljabar) dan Ibnu Sina (kedokteran).</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="abbasiyah" data-explain="Baitul Hikmah berada di Baghdad, pusat ilmu pada masa Abbasiyah.">
+            <p class="font-semibold text-moss">Uji diri: di kota mana Baitul Hikmah berada?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Damaskus</button>
+              <button type="button" class="quiz-btn" data-correct="true">Baghdad</button>
+              <button type="button" class="quiz-btn" data-correct="false">Madinah</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Nusantara -->
+    <article id="nusantara" class="mx-auto max-w-4xl scroll-mt-28 border-t border-ink/10 px-5 py-16">
+      <div class="grid gap-10 md:grid-cols-5 md:items-center">
+        <figure class="frame rounded-2xl p-4 md:col-span-2">
+          <svg viewBox="0 0 240 180" class="w-full rounded-xl" role="img" aria-label="Perahu layar di atas laut">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="196" cy="42" r="30" fill="url(#glow)" class="flicker"/>
+            <circle cx="196" cy="42" r="12" fill="url(#gold)"/>
+            <ellipse cx="70" cy="46" rx="28" ry="7" fill="#fff" opacity=".7" class="drift"/>
+            <path class="bird b3" d="M30 60 q4 -4 8 0 q4 -4 8 0" stroke="#1f2a24" stroke-width="1.6" fill="none"/>
+            <rect y="116" width="240" height="64" fill="url(#sea)"/>
+            <rect x="24" y="132" width="26" height="2" rx="1" fill="#fff" class="shimmer"/>
+            <rect x="140" y="146" width="34" height="2" rx="1" fill="#fff" class="shimmer s2"/>
+            <rect x="180" y="128" width="20" height="2" rx="1" fill="#fff" class="shimmer s3"/>
+            <g class="bob">
+              <rect x="118" y="34" width="4" height="86" fill="#1f2a24"/>
+              <path d="M124 38 Q168 70 124 112 Z" fill="url(#gold)"/>
+              <path d="M60 116 H182 L166 140 H76 Z" fill="#1f2a24"/>
+            </g>
+            <path class="wave" d="M-60 130 Q-45 122 -30 130 T0 130 T30 130 T60 130 T90 130 T120 130 T150 130 T180 130 T210 130 T240 130 T270 130 T300 130" stroke="#d9f0f2" stroke-opacity=".6" stroke-width="2.5" fill="none"/>
+            <path class="wave2" d="M-60 152 Q-45 144 -30 152 T0 152 T30 152 T60 152 T90 152 T120 152 T150 152 T180 152 T210 152 T240 152 T270 152 T300 152" stroke="#d9f0f2" stroke-opacity=".35" stroke-width="2" fill="none"/>
+          </svg>
+          <figcaption class="mt-3 text-center text-sm text-ink/70">Perdagangan lewat laut</figcaption>
+        </figure>
+        <div class="md:col-span-3">
+          <h2 class="font-serif text-3xl font-bold text-moss">6. Islam di Nusantara</h2>
+          <p class="mt-1 font-semibold text-bronze">Sekitar abad ke-7 sampai ke-13 M</p>
+          <div class="mt-5 space-y-4 text-lg leading-relaxed">
+            <p>Islam masuk ke Nusantara terutama melalui perdagangan dan dakwah, dan prosesnya berlangsung bertahap. Sejumlah pedagang Arab, Persia, dan Gujarat telah datang ke wilayah Nusantara sebelum berdirinya kerajaan-kerajaan Islam. Para ahli sejarah masih berbeda pendapat tentang asal dan waktu masuknya Islam, sehingga sumber-sumber perlu dibaca secara kritis.</p>
+            <p>Kerajaan Samudra Pasai di Aceh, yang dipimpin Sultan Malik al-Saleh, termasuk kerajaan Islam tertua di Nusantara dan berkembang sebagai pusat perdagangan. Pada abad ke-15 dan ke-16, Malaka dan Demak tumbuh sebagai pusat Islam yang penting. Di Jawa, penyebaran Islam juga dilakukan melalui pendekatan budaya oleh para wali, yang dikenal sebagai Walisongo.</p>
+          </div>
+          <div class="mt-6 border-l-4 border-gold bg-white/60 p-5">
+            <h3 class="font-semibold text-moss">Poin penting</h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Islam menyebar lewat perdagangan dan dakwah.</li>
+              <li>Samudra Pasai termasuk kerajaan Islam tertua di Nusantara.</li>
+            </ul>
+          </div>
+          <div class="quiz mt-6" data-q="nusantara" data-explain="Samudra Pasai di Aceh termasuk kerajaan Islam tertua di Nusantara.">
+            <p class="font-semibold text-moss">Uji diri: kerajaan Islam tertua di Nusantara yang disebut dalam materi?</p>
+            <div class="mt-3 grid gap-2">
+              <button type="button" class="quiz-btn" data-correct="false">Demak</button>
+              <button type="button" class="quiz-btn" data-correct="true">Samudra Pasai</button>
+              <button type="button" class="quiz-btn" data-correct="false">Mataram</button>
+            </div>
+            <p class="quiz-feedback mt-3 hidden text-sm font-semibold"></p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <div id="finish" class="mx-auto mb-4 hidden max-w-4xl px-5">
+    <div class="rounded-2xl bg-moss p-8 text-paper">
+      <h2 class="font-serif text-3xl font-bold">Selesai!</h2>
+      <p id="score-text" class="mt-3 text-lg"></p>
+      <button id="reset" type="button" class="mt-6 rounded-lg border border-paper/60 px-5 py-2.5 font-semibold transition hover:bg-white/10">Ulangi kuis</button>
+    </div>
+  </div>
+
+  <footer class="pattern bg-night px-5 py-10 text-center text-sm leading-relaxed text-paper/75">
+    <p class="mx-auto max-w-2xl">Sebelum digunakan di kelas, periksa kembali tanggal dan nama dengan buku ajar atau sumber resmi yang Anda pakai.</p>
+  </footer>
+
+  <script>
+    // Menandai bagian yang sedang dibaca pada daftar di bagian atas
+    const chips = document.querySelectorAll('.nav-chip');
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        chips.forEach(c => c.classList.toggle('active', c.getAttribute('href') === '#' + en.target.id));
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    document.querySelectorAll('article[id]').forEach(a => spy.observe(a));
+
+    // Progres membaca dan kuis
+    const articles = document.querySelectorAll('article[id]');
+    const quizzes = document.querySelectorAll('.quiz');
+    const seen = new Set(), done = new Set();
+    let score = 0;
+    const bar = document.getElementById('bar');
+    const info = document.getElementById('progress-text');
+    const finish = document.getElementById('finish');
+    const scoreText = document.getElementById('score-text');
+
+    function updateProgress() {
+      bar.style.width = ((seen.size + done.size) / (articles.length * 2) * 100) + '%';
+      info.textContent = `Dibaca ${seen.size}/${articles.length} · Kuis ${done.size}/${quizzes.length}`;
+      finish.classList.toggle('hidden', done.size < quizzes.length);
+      scoreText.textContent = `Anda menjawab ${score} dari ${quizzes.length} kuis dengan benar.`;
+    }
+
+    const readObs = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { seen.add(en.target.id); updateProgress(); } });
+    }, { threshold: 0.35 });
+    articles.forEach(a => readObs.observe(a));
+
+    quizzes.forEach(q => {
+      const fb = q.querySelector('.quiz-feedback');
+      q.querySelectorAll('.quiz-btn').forEach(btn => btn.addEventListener('click', () => {
+        if (q.dataset.done) return;
+        q.dataset.done = '1';
+        const ok = btn.dataset.correct === 'true';
+        btn.classList.add(ok ? 'ok' : 'bad');
+        q.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = true; if (b.dataset.correct === 'true') b.classList.add('ok'); });
+        if (ok) score++;
+        done.add(q.dataset.q);
+        fb.textContent = (ok ? 'Benar. ' : 'Belum tepat. Jawaban yang benar berwarna hijau. ') + q.dataset.explain;
+        fb.classList.remove('hidden', 'good', 'bad');
+        fb.classList.add(ok ? 'good' : 'bad');
+        updateProgress();
+      }));
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      quizzes.forEach(q => {
+        delete q.dataset.done;
+        q.querySelectorAll('.quiz-btn').forEach(b => { b.disabled = false; b.classList.remove('ok', 'bad'); });
+        q.querySelector('.quiz-feedback').classList.add('hidden');
+      });
+      done.clear(); score = 0; updateProgress();
+    });
+    updateProgress();
+
+    // Ilustrasi muncul saat digulir
+    document.documentElement.classList.add('js');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); revealObs.unobserve(en.target); } });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('figure.frame').forEach(f => revealObs.observe(f));
+  </script>
+</body>
+</html>
