@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Periode Makkah | Sirah Nabawiyah</title>
+  <meta name="description" content="Materi interaktif periode Makkah dalam Sirah Nabawiyah, dengan kuis dan daftar sumber." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Source Sans 3', system-ui, sans-serif; background: #f7f3ea; color: #1f2a24; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: Lora, Georgia, serif; line-height: 1.25; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top: 0; z-index: 9; background: rgba(247,243,234,.96); border-bottom: 1px solid #e3dccb; padding-top: env(safe-area-inset-top, 0px); }
+    .brand { font-family: Lora, serif; font-weight: 700; color: #1d5c47; margin: 12px 0 6px; }
+    .track { height: 4px; background: #e3dccb; border-radius: 2px; }
+    #bar { height: 4px; width: 0; background: #d4a24c; border-radius: 2px; transition: width .4s; }
+    nav { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 12px; }
+    nav button { flex: 0 0 auto; border: 1px solid #cfc6b0; background: #fff; border-radius: 999px; padding: 6px 14px; font: 600 .9rem 'Source Sans 3', sans-serif; color: inherit; cursor: pointer; }
+    nav button.on { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .page { display: none; padding: 28px 0 40px; }
+    .page.on { display: block; animation: fade .5s ease; }
+    .grid { display: grid; gap: 28px; }
+    @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1.25fr; align-items: center; } }
+    figure { margin: 0; background: #fffdf7; border-radius: 16px; padding: 14px; box-shadow: 0 18px 40px -22px rgba(13,27,23,.4); }
+    figure svg { width: 100%; display: block; border-radius: 10px; }
+    figcaption { text-align: center; font-size: .9rem; color: rgba(31,42,36,.7); margin-top: 8px; }
+    .date { color: #8a6212; font-weight: 600; margin: 0 0 10px; }
+    .text p { font-size: 1.08rem; margin: 0 0 14px; }
+    .points { background: #eef4ef; border-left: 4px solid #d4a24c; border-radius: 8px; padding: 14px 18px; }
+    .acad { background: #fffdf7; border: 1px solid #e3dccb; border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; }
+    .acad p { font-family: Lora, Georgia, serif; font-size: 1.02rem; }
+    .label { font-weight: 700; font-size: .95rem; color: #8a6212; margin: 20px 0 8px; }
+    figure { position: relative; }
+    figure svg { filter: url(#grain); transition: filter .6s ease; }
+    figure::after { content: ''; position: absolute; inset: 14px; border-radius: 10px; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(13,27,23,.35)); }
+    figure.night svg { filter: url(#grain) brightness(.6) saturate(1.15) hue-rotate(-8deg); }
+    .tg { position: absolute; top: 22px; left: 22px; z-index: 2; border: 0; border-radius: 999px; padding: 5px 12px; background: rgba(13,27,23,.75); color: #fff; font: 600 .8rem 'Source Sans 3', sans-serif; cursor: pointer; }
+    .hs { position: absolute; z-index: 2; width: 28px; height: 28px; margin: -14px 0 0 -14px; border: 2px solid #fff; border-radius: 50%; background: #d4a24c; color: #0d1b17; font: 700 1rem/1 sans-serif; cursor: pointer; padding: 0; animation: pulse 2s infinite; }
+    .hs .tip { display: none; position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); width: 210px; background: #0d1b17; color: #fff; font: 400 .9rem/1.4 'Source Sans 3', sans-serif; padding: 9px 11px; border-radius: 8px; text-align: left; }
+    .hs:hover .tip, .hs:focus .tip, .hs.open .tip { display: block; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,162,76,.6); } 70% { box-shadow: 0 0 0 12px rgba(212,162,76,0); } 100% { box-shadow: 0 0 0 0 rgba(212,162,76,0); } }
+    .points h3 { margin: 0 0 6px; font-size: 1.05rem; color: #1d5c47; }
+    .points ul { margin: 0; padding-left: 20px; }
+    .controls { position: sticky; bottom: 0; background: #f7f3ea; border-top: 1px solid #e3dccb; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); }
+    .controls .row { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .btn { border: 1px solid #1d5c47; background: #1d5c47; color: #fff; border-radius: 8px; padding: 9px 16px; font: 600 1rem 'Source Sans 3', sans-serif; cursor: pointer; }
+    .btn.ghost { background: #fff; color: #1d5c47; }
+    .btn:disabled { opacity: .35; cursor: default; }
+    #pos { font-weight: 600; }
+    .q { background: #fff; border: 1px solid #e3dccb; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .q p.lead { margin: 0 0 8px; font-weight: 600; }
+    .opt { display: block; width: 100%; text-align: left; margin: 6px 0; padding: 10px 14px; border: 1px solid #cfc6b0; border-radius: 8px; background: #fff; font: inherit; color: inherit; cursor: pointer; }
+    .opt:not(:disabled):hover { border-color: #1d5c47; }
+    .opt.ok { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .opt.bad { background: #9b3b2b; border-color: #9b3b2b; color: #fff; }
+    .fb { min-height: 1.5em; font-weight: 600; margin: 8px 0 0; }
+    .fb.good { color: #1d5c47; } .fb.bad { color: #9b3b2b; }
+    .score { font-size: 1.15rem; font-weight: 700; margin: 18px 0 10px; }
+    .sources li { margin-bottom: 8px; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    .twinkle { animation: tw 3s ease-in-out infinite; }
+    @keyframes tw { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+    .flicker { transform-box: fill-box; transform-origin: center; animation: fl 2.6s ease-in-out infinite; }
+    @keyframes fl { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    .drift { animation: dr 12s ease-in-out infinite alternate; }
+    @keyframes dr { from { transform: translateX(-10px); } to { transform: translateX(14px); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="day" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0d2"/><stop offset="1" stop-color="#f6eed9"/></linearGradient>
+      <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20453a"/><stop offset="1" stop-color="#0d1b17"/></linearGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d17f"/><stop offset="1" stop-color="#b7862b"/></linearGradient>
+      <linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9a78"/><stop offset="1" stop-color="#1d5c47"/></linearGradient>
+      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e7cc"/><stop offset="1" stop-color="#d6bd8c"/></linearGradient>
+      <radialGradient id="glow"><stop offset="0" stop-color="#f3d17f" stop-opacity=".7"/><stop offset="1" stop-color="#f3d17f" stop-opacity="0"/></radialGradient>
+      <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComposite in="SourceGraphic" in2="mono" operator="arithmetic" k1="0" k2="0.88" k3="0.12" k4="0"/></filter>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="wrap">
+      <p class="brand">Periode Makkah · Sirah Nabawiyah</p>
+      <div class="track"><div id="bar"></div></div>
+      <nav aria-label="Daftar halaman">
+        <button class="on" type="button">1. Makkah sebelum Islam</button>
+        <button type="button">2. Wahyu Pertama</button>
+        <button type="button">3. Dakwah Sembunyi-sembunyi</button>
+        <button type="button">4. Tekanan Quraisy</button>
+        <button type="button">5. Menuju Hijrah</button>
+        <button type="button">Soal HOTS dan Sumber</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Halaman 1 -->
+    <section class="page on" id="p1">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Ka’bah di tengah kota Makkah">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <ellipse cx="60" cy="40" rx="34" ry="7" fill="#fff" opacity=".7" class="drift"/>
+            <rect y="120" width="240" height="60" fill="url(#sand)"/>
+            <rect x="12" y="92" width="34" height="28" fill="#d6bd8c"/>
+            <rect x="180" y="86" width="44" height="34" fill="#d6bd8c"/>
+            <rect x="96" y="66" width="48" height="54" fill="#0d1b17"/>
+            <rect x="96" y="90" width="48" height="6" fill="url(#gold)"/>
+            <circle cx="120" cy="62" r="10" fill="url(#glow)" class="flicker"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+            <button class="hs" type="button" style="left:50%;top:52%" onclick="this.classList.toggle('open')">+<span class="tip">Ka’bah: bangunan kubus yang menjadi kiblat dan pusat peribadatan.</span></button>
+            <button class="hs" type="button" style="left:14%;top:60%" onclick="this.classList.toggle('open')">+<span class="tip">Rumah-rumah warga Makkah, tempat aktivitas keluarga dan dagang.</span></button>
+          <figcaption>Ka’bah di Makkah (ilustrasi sederhana)</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">Sekitar 570 M</p>
+          <h2>Makkah sebelum Islam dan kelahiran Nabi</h2>
+          <div class="acad">
+            <p>Secara historis, kondisi Makkah sebelum kenabian dapat dipahami melalui struktur sosial-ekonomi masyarakat Quraisy. Kota ini berkedudukan sebagai pusat perdagangan karena berada di jalur karavan, dan kesuciannya ditopang oleh tradisi tanah haram serta keberadaan Ka’bah sebagai pusat peribadatan. Sirah klasik, khususnya karya Ibnu Ishaq yang direkonstruksi Ibnu Hisyam, menempatkan kelahiran Nabi dalam kerangka silsilah Bani Hasyim di dalam Quraisy.</p>
+            <p>Dari sisi kritik sumber, rincian kelahiran dan masa kanak-kanak diwariskan terutama melalui riwayat lisan. Karena itu, pembaca perlu membedakan antara fakta yang disepakati para sejarawan dan riwayat yang diperdebatkan.</p>
+          </div>
+          <p>Makkah juga menjadi tempat berkumpulnya para penyair dan pedagang dari berbagai kabilah. Pasar seperti Ukaz menjadi ruang pertemuan budaya, sehingga kota ini dikenal sebagai pusat ekonomi dan sosial bangsa Arab.</p>
+          <p>Pada masa itu, Makkah ramai karena kafilah dagang datang dari berbagai daerah. Orang Quraisy menjadi kaya dari berdagang. Surah Quraisy bahkan menyebut perjalanan dagang mereka pada musim dingin dan musim panas.</p>
+          <p>Nabi Muhammad SAW lahir di Makkah sekitar tahun 570 M, dalam keluarga Bani Hasyim dari suku Quraisy. Pada masa itu Makkah menjadi pusat perdagangan di Jazirah Arab sekaligus pusat peribadatan. Ka’bah dihormati banyak suku, meskipun sebagian besar masyarakat menyembah berhala di sekelilingnya.</p>
+          <p>Ayah beliau, Abdullah, wafat sebelum beliau lahir, dan ibunya, Aminah, wafat ketika beliau masih kecil. Beliau kemudian diasuh kakeknya, Abdul Muthalib, lalu pamannya, Abu Thalib. Sejak muda beliau dikenal jujur dan tepercaya sehingga mendapat gelar <em>Al-Amin</em>.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul>
+              <li>Makkah adalah pusat perdagangan dan peribadatan Arab.</li>
+              <li>Nabi tumbuh sebagai yatim piatu dan dikenal dengan gelar Al-Amin.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 2 -->
+    <section class="page" id="p2">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Gua Hira di malam hari">
+            <rect width="240" height="180" fill="url(#night)"/>
+            <g class="twinkle"><circle cx="40" cy="30" r="1.5" fill="#fff"/><circle cx="90" cy="18" r="1.2" fill="#fff"/><circle cx="130" cy="44" r="1" fill="#fff"/></g>
+            <g class="twinkle" style="animation-delay:1.2s"><circle cx="170" cy="22" r="1.5" fill="#fff"/><circle cx="215" cy="70" r="1.2" fill="#fff"/></g>
+            <circle cx="190" cy="40" r="30" fill="url(#glow)" class="flicker"/>
+            <circle cx="190" cy="40" r="14" fill="url(#gold)"/>
+            <path d="M0 150 L70 70 L110 115 L140 85 L240 150 V180 H0 Z" fill="url(#green)"/>
+            <path d="M86 100 Q98 78 110 100 Z" fill="#0d1b17"/>
+            <circle cx="98" cy="97" r="6" fill="#f3d17f" class="flicker"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+            <button class="hs" type="button" style="left:41%;top:50%" onclick="this.classList.toggle('open')">+<span class="tip">Gua Hira: tempat Nabi menyendiri dan menerima wahyu pertama.</span></button>
+            <button class="hs" type="button" style="left:29%;top:39%" onclick="this.classList.toggle('open')">+<span class="tip">Jabal Nur, bukit tempat Gua Hira berada.</span></button>
+          <figcaption>Gua Hira di Jabal Nur</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">610 M</p>
+          <h2>Wahyu pertama di Gua Hira</h2>
+          <div class="acad">
+            <p>Riwayat tentang permulaan wahyu bersumber terutama dari hadis sahih, di antaranya riwayat Aisyah RA dalam Shahih al-Bukhari yang menggambarkan wahyu diawali dengan mimpi yang benar (ar-ru’ya ash-shalihah) sebelum Nabi menerima wahyu secara langsung di Gua Hira. Para ulama tafsir memaknai perintah iqra’ sebagai perintah membaca dalam arti luas, yang kemudian menjadi dasar penekanan pada ilmu dalam Islam.</p>
+          </div>
+          <p>Gua Hira terletak di Jabal Nur, sekitar beberapa kilometer dari pusat kota. Mendaki ke sana tidak mudah, sehingga Nabi biasanya menghabiskan waktu di sana untuk merenung dan beribadah.</p>
+          <p>Sebelum wahyu datang, Nabi sering menyendiri di Gua Hira untuk beribadah dan merenung. Ketika Jibril datang, beliau merasa takut dan bingung. Khadijah lalu menenangkan beliau dan membawanya kepada Waraqah bin Naufal, sepupu Khadijah yang memahami kitab-kitab terdahulu. Waraqah menyatakan bahwa peristiwa itu adalah wahyu yang juga pernah datang kepada Musa.</p>
+          <p>Menjelang usia 40 tahun, Nabi sering menyendiri di Gua Hira, di Jabal Nur, untuk merenungkan keadaan masyarakat Makkah. Pada tahun 610 M, Malaikat Jibril datang dan menyampaikan wahyu pertama, yaitu QS. Al-‘Alaq ayat 1–5, yang dimulai dengan perintah <em>‘Iqra’</em> atau “bacalah”. Peristiwa ini menandai awal kenabian.</p>
+          <p>Wahyu berikutnya, QS. Al-Muddatstsir ayat 1–7, memerintahkan Nabi untuk memberi peringatan kepada umat. Sejak itu, beliau mulai menjalankan tugas dakwah.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul>
+              <li>Wahyu pertama turun di Gua Hira sekitar tahun 610 M.</li>
+              <li>Wahyu pertama dimulai dengan perintah membaca.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 3 -->
+    <section class="page" id="p3">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Rumah dengan cahaya lampu di jendela">
+            <rect width="240" height="180" fill="url(#night)"/>
+            <g class="twinkle"><circle cx="30" cy="26" r="1.4" fill="#fff"/><circle cx="210" cy="30" r="1.4" fill="#fff"/></g>
+            <rect y="130" width="240" height="50" fill="url(#green)"/>
+            <rect x="70" y="80" width="100" height="52" fill="#d6bd8c"/>
+            <path d="M62 82 L120 46 L178 82 Z" fill="#1f2a24"/>
+            <rect x="102" y="104" width="36" height="28" fill="#0d1b17"/>
+            <rect x="92" y="96" width="14" height="14" fill="url(#gold)" class="flicker"/>
+            <rect x="134" y="96" width="14" height="14" fill="url(#gold)" class="flicker"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+            <button class="hs" type="button" style="left:50%;top:66%" onclick="this.classList.toggle('open')">+<span class="tip">Pintu rumah: pertemuan dakwah awal sering dilakukan di rumah.</span></button>
+            <button class="hs" type="button" style="left:41%;top:57%" onclick="this.classList.toggle('open')">+<span class="tip">Jendela: pertemuan kecil dilakukan secara tertutup.</span></button>
+          <figcaption>Dakwah dilakukan dari rumah ke rumah</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">610–613 M (± 3 tahun)</p>
+          <h2>Dakwah sembunyi-sembunyi</h2>
+          <div class="acad">
+            <p>Fase sirriyah dapat dipahami sebagai strategi dakwah yang bertahap. Pada fase ini jumlah pengikut masih terbatas dan dakwah dilakukan secara personal melalui hubungan kekerabatan dan persahabatan. Para sahabat awal, yang dikenal dengan istilah as-sabiqun al-awwalun, berasal dari latar sosial yang beragam, sehingga dakwah ini juga mengandung dimensi sosial.</p>
+            <p>Jumlah pasti pengikut pada fase ini diperdebatkan dalam literatur sirah. Karena itu, angka yang dipakai dalam buku ajar sebaiknya dirujuk pada sumber yang jelas.</p>
+          </div>
+          <p>Dalam fase ini dakwah tidak hanya berupa ucapan, tetapi juga contoh akhlak. Orang-orang yang masuk Islam dikenal karena kejujuran dan kesetiaan mereka, sehingga kepercayaan menjadi modal utama dakwah.</p>
+          <p>Mengapa dakwah dilakukan diam-diam? Quraisy belum menganggap dakwah ini sebagai ancaman besar, tetapi Nabi memilih berhati-hati agar pengikut yang baru tidak langsung diserang. Pada fase ini banyak pertemuan dilakukan di rumah. Rumah Arqam bin Abi al-Arqam di bukit Shafa dikenal sebagai tempat berkumpulnya para sahabat untuk belajar Al-Qur’an.</p>
+          <p>Pada tiga tahun pertama, dakwah dilakukan secara sembunyi-sembunyi (<em>sirriyah</em>). Dakwah ditujukan kepada kerabat dan sahabat dekat. Di antara orang pertama yang memeluk Islam adalah Khadijah binti Khuwailid, Ali bin Abi Thalib, Zaid bin Haritsah, Abu Bakar Ash-Shiddiq, dan Utsman bin Affan.</p>
+          <p>Strategi ini dipilih untuk melindungi pengikut yang masih sedikit dari tekanan Quraisy, sekaligus membentuk kelompok yang kuat dan saling percaya.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul>
+              <li>Khadijah adalah orang pertama yang memeluk Islam.</li>
+              <li>Dakwah sembunyi-sembunyi bertujuan melindungi pengikut yang masih sedikit.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 4 -->
+    <section class="page" id="p4">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Gurun di bawah matahari terik">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="186" cy="46" r="26" fill="url(#gold)" class="flicker"/>
+            <path d="M0 130 Q60 100 120 125 T240 118 V180 H0 Z" fill="url(#sand)"/>
+            <path d="M0 152 Q70 130 140 150 T240 146 V180 H0 Z" fill="#d6bd8c"/>
+            <path d="M30 96 Q60 90 90 96 M110 84 Q140 78 170 84" stroke="#b7862b" stroke-width="2" fill="none" opacity=".6" class="drift"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+            <button class="hs" type="button" style="left:78%;top:26%" onclick="this.classList.toggle('open')">+<span class="tip">Matahari terik: gambaran tekanan berat yang dialami kaum Muslim.</span></button>
+            <button class="hs" type="button" style="left:50%;top:75%" onclick="this.classList.toggle('open')">+<span class="tip">Gurun: kondisi alam yang keras di sekitar Makkah.</span></button>
+          <figcaption>Panas dan tekanan yang berat</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">615–619 M</p>
+          <h2>Tekanan Quraisy</h2>
+          <div class="acad">
+            <p>Fase jahriyah dikaitkan dengan perintah untuk menyampaikan dakwah secara terbuka (QS. Al-Hijr: 94) dan peringatan kepada kerabat terdekat (QS. Asy-Syu’ara: 214). Penolakan Quraisy dapat dianalisis dari dua dimensi, yaitu dimensi teologis, berupa penolakan terhadap tauhid, dan dimensi sosial-ekonomi, karena kedudukan politik serta keuntungan dari tradisi penyembahan berhala ikut terancam.</p>
+            <p>Peristiwa pemboikotan Bani Hasyim (616–619 M) menunjukkan tekanan yang terorganisasi dari kelompok elit Quraisy.</p>
+          </div>
+          <p>Abu Jahal dan Abu Lahab termasuk tokoh Quraisy yang paling keras menentang Nabi. Penentangan mereka tidak hanya soal keyakinan, tetapi juga menyangkut status dan kepentingan keluarga mereka.</p>
+          <p>Bayangkan Makkah sebagai kota dagang yang bergantung pada Ka’bah. Jika orang berhenti menyembah berhala, pedagang dan penjaga kuil kehilangan penghasilan. Itulah sebabnya ajaran tauhid dianggap ancaman. Sebagian pengikut disiksa, misalnya Bilal bin Rabah, yang tetap teguh dalam keimanannya meski mendapat siksaan berat.</p>
+          <p>Setelah turun perintah untuk berdakwah secara terbuka (<em>jahriyah</em>), para pemuka Quraisy menentang keras. Ajaran tauhid dianggap mengancam kedudukan politik dan keuntungan ekonomi dari tradisi penyembahan berhala. Sebagian pengikut mengalami penyiksaan dan akhirnya berhijrah ke Habasyah sekitar tahun 615 M.</p>
+          <p>Pada tahun 616–619 M, Quraisy memberlakukan pemboikotan terhadap Bani Hasyim. Tahun 619 M menjadi masa paling berat karena wafatnya Khadijah dan Abu Thalib, yang dikenal sebagai <em>‘Amul Huzn</em> atau Tahun Kesedihan.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul>
+              <li>Sebagian pengikut berhijrah ke Habasyah sekitar 615 M.</li>
+              <li>Tahun 619 M dikenal sebagai ‘Amul Huzn.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 5 -->
+    <section class="page" id="p5">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Masjid dan kota dengan jalan menuju kota">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="50" cy="36" r="13" fill="url(#gold)"/>
+            <rect y="132" width="240" height="48" fill="url(#sand)"/>
+            <path d="M120 132 A38 38 0 0 1 196 132 Z" fill="url(#gold)"/>
+            <rect x="106" y="94" width="8" height="40" fill="url(#sand)"/>
+            <path d="M102 94 Q110 70 118 94 Z" fill="url(#gold)"/>
+            <path d="M0 160 Q120 140 240 160" stroke="#1d5c47" stroke-width="3" fill="none" stroke-dasharray="6 6" class="drift"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+            <button class="hs" type="button" style="left:66%;top:52%" onclick="this.classList.toggle('open')">+<span class="tip">Kubah masjid: simbol kota Madinah setelah hijrah.</span></button>
+            <button class="hs" type="button" style="left:50%;top:83%" onclick="this.classList.toggle('open')">+<span class="tip">Jalur hijrah dari Makkah menuju Yatsrib.</span></button>
+          <figcaption>Jalan menuju Yatsrib, kelak Madinah</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">619–622 M</p>
+          <h2>Menuju hijrah</h2>
+          <div class="acad">
+            <p>Fase akhir Makkah menunjukkan pergeseran strategi dakwah dari pusat kota ke jaringan di luar Makkah. Baiat Aqabah I (621 M) dan Baiat Aqabah II (622 M) sering dipandang sebagai dasar sosial-politik hijrah, karena memperlihatkan adanya basis dukungan di Yatsrib.</p>
+            <p>Riwayat Isra Mi’raj dalam literatur sirah beragam, baik dari sisi waktu maupun rincian peristiwanya. Karena itu, pembahasannya lebih tepat diposisikan sebagai kajian riwayat daripada kepastian kronologi.</p>
+          </div>
+          <p>Hijrah bukan sekadar perpindahan tempat. Kaum Muslim meninggalkan rumah, harta, dan kerabat demi menjaga keimanan. Peristiwa ini menjadi contoh pengorbanan yang sering dibicarakan dalam sejarah Islam.</p>
+          <p>Setelah Abu Thalib wafat, Nabi pergi ke Thaif untuk berdakwah, tetapi penduduknya menolak dan melukai beliau. Dalam kondisi itu, beliau bertemu rombongan dari Yatsrib pada musim haji. Mereka menyatakan keimanan, lalu setahun kemudian datang lagi dengan jumlah yang lebih besar dan berjanji melindungi Nabi. Janji inilah yang disebut Baiat Aqabah.</p>
+          <p>Setelah ‘Amul Huzn, dakwah mulai membuka jalan keluar dari Makkah. Dalam riwayat sirah, Isra Mi’raj juga banyak dikaitkan dengan masa ini, meskipun tanggalnya diperdebatkan para ulama dan sejarawan.</p>
+          <p>Pada Baiat Aqabah I (621 M) dan Baiat Aqabah II (622 M), sejumlah penduduk Yatsrib berjanji untuk melindungi Nabi dan menerima Islam. Janji ini menjadi dasar hijrah. Pada tahun 622 M, Nabi dan para sahabat berhijrah ke Yatsrib, yang kemudian dikenal sebagai Madinah, dan peristiwa ini menjadi awal kalender Hijriah.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul>
+              <li>Baiat Aqabah menjadi dasar perlindungan bagi kaum Muslim.</li>
+              <li>Hijrah tahun 622 M menjadi awal kalender Hijriah.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 6: kuis dan sumber -->
+    <section class="page" id="p6">
+      <h2>Soal HOTS Periode Makkah</h2>
+      <p>Jawab sepuluh soal berikut. Soal ini menguji kemampuan menganalisis, mengevaluasi, dan menghubungkan peristiwa. Jawaban langsung diperiksa setelah Anda memilih.</p>
+
+      <div id="quiz"></div>
+
+
+
+
+
+
+
+
+
+      <p class="score" id="score">Skor: 0 dari 10</p>
+      <button class="btn ghost" id="reset" type="button">Ulangi kuis</button>
+
+      <h3 style="margin-top:32px">Sumber</h3>
+      <ul class="sources">
+        <li><strong>Syaikh Shafiyyurrahman al-Mubarakfuri</strong>, <em>Ar-Rahiqul Makhtum</em> (Sirah Nabawiyah). Rujukan utama dan sudah tersedia dalam bahasa Indonesia.</li>
+        <li><strong>Ibnu Hisyam</strong>, <em>Sirah Nabawiyah</em>, ringkasan dari karya Ibnu Ishaq.</li>
+        <li><strong>Muhammad Husain Haekal</strong>, <em>Sejarah Hidup Muhammad</em>. Bacaan pendamping yang mudah dipahami.</li>
+      </ul>
+      <p>Sebelum digunakan di kelas, periksa kembali tanggal, terutama Isra Mi’raj dan Baiat Aqabah, dengan buku ajar yang dipakai sekolah.</p>
+    </section>
+  </main>
+
+  <div class="controls">
+    <div class="row">
+      <button class="btn ghost" id="prev" type="button">← Sebelumnya</button>
+      <span id="pos">1 / 6</span>
+      <button class="btn" id="next" type="button">Berikutnya →</button>
+    </div>
+  </div>
+
+  <script>
+    const pages = [...document.querySelectorAll('.page')];
+    const tabs = [...document.querySelectorAll('nav button')];
+    const seen = new Set([0]);
+    let cur = 0;
+
+    function show(i) {
+      cur = Math.max(0, Math.min(pages.length - 1, i));
+      pages.forEach((p, k) => p.classList.toggle('on', k === cur));
+      tabs.forEach((t, k) => t.classList.toggle('on', k === cur));
+      seen.add(cur);
+      document.getElementById('pos').textContent = (cur + 1) + ' / ' + pages.length;
+      document.getElementById('prev').disabled = cur === 0;
+      document.getElementById('next').disabled = cur === pages.length - 1;
+      document.getElementById('bar').style.width = (seen.size / pages.length * 100) + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabs.forEach((t, k) => t.addEventListener('click', () => show(k)));
+    document.getElementById('prev').addEventListener('click', () => show(cur - 1));
+    document.getElementById('next').addEventListener('click', () => show(cur + 1));
+    document.addEventListener('keydown', e => {
+      if (e.target.closest('.q')) return;
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+    show(0);
+
+    // Kuis
+    // Soal HOTS
+    const HOTS = [
+      { q: 'Mengapa para pemuka Quraisy menolak dakwah tauhid, padahal Nabi dikenal jujur dan tepercaya?', o: ['Karena Nabi belum pernah berdagang', 'Karena Quraisy tidak mengenal ajaran tauhid sama sekali', 'Karena tauhid mengancam kedudukan politik dan keuntungan ekonomi dari tradisi penyembahan berhala', 'Karena wahyu pertama berisi perintah untuk berperang'], a: 2, e: 'Penolakan Quraisy lebih berkaitan dengan kepentingan sosial-ekonomi daripada keraguan terhadap kejujuran Nabi.' },
+      { q: 'Perintah iqra’ dalam wahyu pertama dapat ditafsirkan sebagai dasar dari...', o: ['Kewajiban shalat lima waktu', 'Larangan melakukan perdagangan', 'Pengembangan ilmu dan literasi sebagai landasan dakwah', 'Perintah untuk berhijrah ke Habasyah'], a: 2, e: 'Iqra’ sering dimaknai sebagai perintah membaca dalam arti luas, termasuk membaca tanda-tanda kebesaran Allah.' },
+      { q: 'Manakah penilaian yang paling tepat terhadap strategi dakwah sembunyi-sembunyi?', o: ['Tanda bahwa Nabi takut menyampaikan wahyu', 'Bentuk penolakan terhadap pengikut yang baru', 'Strategi bertahap untuk melindungi pengikut dan membangun kekuatan internal', 'Upaya agar Quraisy segera menerima Islam'], a: 2, e: 'Pada kondisi awal yang masih rentan, strategi bertahap merupakan langkah yang rasional.' },
+      { q: 'Mengapa wafatnya Khadijah dan Abu Thalib disebut peristiwa yang sangat berat bagi dakwah?', o: ['Keduanya memimpin pemboikotan terhadap Bani Hasyim', 'Keduanya berhijrah ke Habasyah', 'Keduanya merupakan pelindung dan penopang utama Nabi, sehingga posisi dakwah melemah', 'Keduanya wafat dalam Perang Badar'], a: 2, e: 'Khadijah dan Abu Thalib memberi dukungan emosional dan perlindungan sosial bagi Nabi.' },
+      { q: 'Apa makna pemboikotan Bani Hasyim (616–619 M) dalam konteks politik Makkah?', o: ['Kesepakatan damai antara Nabi dan Quraisy', 'Tekanan terorganisasi dari elite Quraisy untuk melemahkan dakwah secara sosial dan ekonomi', 'Upaya Quraisy untuk menerima ajaran tauhid', 'Kebijakan perdagangan internasional Makkah'], a: 1, e: 'Pemboikotan menunjukkan penentangan yang dilakukan secara kolektif dan terencana.' },
+      { q: 'Mengapa Baiat Aqabah dapat dipandang sebagai titik penting menuju hijrah?', o: ['Karena menyelesaikan konflik dengan penduduk Thaif', 'Karena menghentikan dakwah di Makkah secara total', 'Karena membuka basis dukungan di luar Makkah yang menjadi dasar perlindungan', 'Karena membuat Quraisy menyerah'], a: 2, e: 'Baiat Aqabah menunjukkan adanya kelompok di Yatsrib yang bersedia melindungi Nabi.' },
+      { q: 'Mengapa kajian tentang waktu Isra Mi’raj perlu dilakukan secara kritis?', o: ['Karena peristiwa itu tidak disebut dalam sumber Islam', 'Karena Isra Mi’raj terjadi setelah wafatnya Nabi', 'Karena riwayat tentang waktu dan rinciannya beragam dalam literatur sirah', 'Karena Isra Mi’raj hanya diriwayatkan oleh non-Muslim'], a: 2, e: 'Perbedaan riwayat mendorong pembaca membedakan antara peristiwa yang disepakati dan detail yang diperdebatkan.' },
+      { q: 'Kisah Waraqah bin Naufal dalam awal wahyu menunjukkan bahwa...', o: ['Khadijah adalah pedagang yang sangat kaya', 'Nabi menerima wahyu dari para penyair', 'Ada pengakuan awal dari seseorang yang memahami kitab terdahulu', 'Makkah menolak semua pengetahuan agama'], a: 2, e: 'Pengakuan Waraqah menjadi salah satu penguat awal bagi kenabian Nabi dalam riwayat sirah.' },
+      { q: 'Surah Quraisy menyebut perjalanan dagang pada musim dingin dan musim panas. Apa kesimpulan yang paling tepat?', o: ['Quraisy hanya tertarik pada pertanian', 'Makkah tidak memiliki jalur perdagangan', 'Quraisy bergantung pada bantuan Persia', 'Ada hubungan erat antara kekuatan ekonomi Quraisy dan kedudukan Ka’bah'], a: 3, e: 'Perdagangan dan Ka’bah saling menopang kedudukan sosial Quraisy.' },
+      { q: 'Jika seorang guru ingin siswa memahami perubahan dari dakwah sirriyah ke jahriyah, aspek mana yang paling tepat dibahas?', o: ['Warna pakaian yang dikenakan Nabi', 'Jenis hewan yang dikendarai Nabi', 'Perubahan jumlah pengikut dan tingkat tekanan dari Quraisy', 'Urutan nama kabilah dalam sirah'], a: 2, e: 'Perubahan strategi dakwah terkait langsung dengan jumlah pengikut dan respons Quraisy.' }
+    ];
+    HOTS.forEach((s, n) => {
+      const d = document.createElement('div');
+      d.className = 'q';
+      d.dataset.exp = s.e;
+      d.innerHTML = '<p class="lead">' + (n + 1) + '. ' + s.q + '</p>' + s.o.map((t, k) => '<button class="opt" type="button" data-ok="' + (k === s.a ? 1 : 0) + '">' + t + '</button>').join('') + '<p class="fb"></p>';
+      document.getElementById('quiz').appendChild(d);
+    });
+    const qs = [...document.querySelectorAll('.q')];
+    let score = 0;
+    const scoreEl = document.getElementById('score');
+
+    qs.forEach(q => {
+      const fb = q.querySelector('.fb');
+      q.querySelectorAll('.opt').forEach(btn => btn.addEventListener('click', () => {
+        if (q.dataset.done) return;
+        q.dataset.done = '1';
+        const ok = btn.dataset.ok === '1';
+        btn.classList.add(ok ? 'ok' : 'bad');
+        q.querySelectorAll('.opt').forEach(x => {
+          x.disabled = true;
+          if (x.dataset.ok === '1') x.classList.add('ok');
+        });
+        if (ok) score++;
+        fb.textContent = (ok ? 'Benar. ' : 'Belum tepat. ') + q.dataset.exp;
+        fb.className = 'fb ' + (ok ? 'good' : 'bad');
+        scoreEl.textContent = 'Skor: ' + score + ' dari ' + qs.length;
+      }));
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      score = 0;
+      qs.forEach(q => {
+        delete q.dataset.done;
+        q.querySelectorAll('.opt').forEach(x => { x.disabled = false; x.classList.remove('ok', 'bad'); });
+        q.querySelector('.fb').textContent = '';
+        q.querySelector('.fb').className = 'fb';
+      });
+      scoreEl.textContent = 'Skor: 0 dari ' + qs.length;
+    });
+  </script>
+</body>
+</html>
