@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Periode Madinah | Sirah Nabawiyah</title>
+  <meta name="description" content="Materi interaktif periode Madinah dalam Sirah Nabawiyah, dengan kuis dan daftar sumber." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Source Sans 3', system-ui, sans-serif; background: #f7f3ea; color: #1f2a24; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: Lora, Georgia, serif; line-height: 1.25; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top: 0; z-index: 9; background: rgba(247,243,234,.96); border-bottom: 1px solid #e3dccb; padding-top: env(safe-area-inset-top, 0px); }
+    .brand { font-family: Lora, serif; font-weight: 700; color: #1d5c47; margin: 12px 0 6px; }
+    .track { height: 4px; background: #e3dccb; border-radius: 2px; }
+    #bar { height: 4px; width: 0; background: #d4a24c; border-radius: 2px; transition: width .4s; }
+    nav { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 12px; }
+    nav button { flex: 0 0 auto; border: 1px solid #cfc6b0; background: #fff; border-radius: 999px; padding: 6px 14px; font: 600 .9rem 'Source Sans 3', sans-serif; color: inherit; cursor: pointer; }
+    nav button.on { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .page { display: none; padding: 28px 0 40px; }
+    .page.on { display: block; animation: fade .5s ease; }
+    .grid { display: grid; gap: 28px; }
+    @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1.25fr; align-items: center; } }
+    figure { margin: 0; background: #fffdf7; border-radius: 16px; padding: 14px; box-shadow: 0 18px 40px -22px rgba(13,27,23,.4); }
+    figure svg { width: 100%; display: block; border-radius: 10px; }
+    figcaption { text-align: center; font-size: .9rem; color: rgba(31,42,36,.7); margin-top: 8px; }
+    .date { color: #8a6212; font-weight: 600; margin: 0 0 10px; }
+    .text p { font-size: 1.08rem; margin: 0 0 14px; }
+    .points { background: #eef4ef; border-left: 4px solid #d4a24c; border-radius: 8px; padding: 14px 18px; }
+    .acad { background: #fffdf7; border: 1px solid #e3dccb; border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; }
+    .acad p { font-family: Lora, Georgia, serif; font-size: 1.02rem; }
+    .label { font-weight: 700; font-size: .95rem; color: #8a6212; margin: 20px 0 8px; }
+    figure { position: relative; }
+    figure svg { filter: url(#grain); transition: filter .6s ease; }
+    figure::after { content: ''; position: absolute; inset: 14px; border-radius: 10px; pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(13,27,23,.35)); }
+    figure.night svg { filter: url(#grain) brightness(.6) saturate(1.15) hue-rotate(-8deg); }
+    .tg { position: absolute; top: 22px; left: 22px; z-index: 2; border: 0; border-radius: 999px; padding: 5px 12px; background: rgba(13,27,23,.75); color: #fff; font: 600 .8rem 'Source Sans 3', sans-serif; cursor: pointer; }
+    .hs { position: absolute; z-index: 2; width: 28px; height: 28px; margin: -14px 0 0 -14px; border: 2px solid #fff; border-radius: 50%; background: #d4a24c; color: #0d1b17; font: 700 1rem/1 sans-serif; cursor: pointer; padding: 0; animation: pulse 2s infinite; }
+    .hs .tip { display: none; position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%); width: 210px; background: #0d1b17; color: #fff; font: 400 .9rem/1.4 'Source Sans 3', sans-serif; padding: 9px 11px; border-radius: 8px; text-align: left; }
+    .hs:hover .tip, .hs:focus .tip, .hs.open .tip { display: block; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,162,76,.6); } 70% { box-shadow: 0 0 0 12px rgba(212,162,76,0); } 100% { box-shadow: 0 0 0 0 rgba(212,162,76,0); } }
+    .points h3 { margin: 0 0 6px; font-size: 1.05rem; color: #1d5c47; }
+    .points ul { margin: 0; padding-left: 20px; }
+    .controls { position: sticky; bottom: 0; background: #f7f3ea; border-top: 1px solid #e3dccb; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); }
+    .controls .row { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .btn { border: 1px solid #1d5c47; background: #1d5c47; color: #fff; border-radius: 8px; padding: 9px 16px; font: 600 1rem 'Source Sans 3', sans-serif; cursor: pointer; }
+    .btn.ghost { background: #fff; color: #1d5c47; }
+    .btn:disabled { opacity: .35; cursor: default; }
+    #pos { font-weight: 600; }
+    .q { background: #fff; border: 1px solid #e3dccb; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .q p.lead { margin: 0 0 8px; font-weight: 600; }
+    .opt { display: block; width: 100%; text-align: left; margin: 6px 0; padding: 10px 14px; border: 1px solid #cfc6b0; border-radius: 8px; background: #fff; font: inherit; color: inherit; cursor: pointer; }
+    .opt:not(:disabled):hover { border-color: #1d5c47; }
+    .opt.ok { background: #1d5c47; border-color: #1d5c47; color: #fff; }
+    .opt.bad { background: #9b3b2b; border-color: #9b3b2b; color: #fff; }
+    .fb { min-height: 1.5em; font-weight: 600; margin: 8px 0 0; }
+    .fb.good { color: #1d5c47; } .fb.bad { color: #9b3b2b; }
+    .score { font-size: 1.15rem; font-weight: 700; margin: 18px 0 10px; }
+    .sources li { margin-bottom: 8px; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    .twinkle { animation: tw 3s ease-in-out infinite; }
+    @keyframes tw { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+    .flicker { transform-box: fill-box; transform-origin: center; animation: fl 2.6s ease-in-out infinite; }
+    @keyframes fl { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+    .drift { animation: dr 12s ease-in-out infinite alternate; }
+    @keyframes dr { from { transform: translateX(-10px); } to { transform: translateX(14px); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="day" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0d2"/><stop offset="1" stop-color="#f6eed9"/></linearGradient>
+      <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20453a"/><stop offset="1" stop-color="#0d1b17"/></linearGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d17f"/><stop offset="1" stop-color="#b7862b"/></linearGradient>
+      <linearGradient id="green" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9a78"/><stop offset="1" stop-color="#1d5c47"/></linearGradient>
+      <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2e7cc"/><stop offset="1" stop-color="#d6bd8c"/></linearGradient>
+      <radialGradient id="glow"><stop offset="0" stop-color="#f3d17f" stop-opacity=".7"/><stop offset="1" stop-color="#f3d17f" stop-opacity="0"/></radialGradient>
+      <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono"/><feComposite in="SourceGraphic" in2="mono" operator="arithmetic" k1="0" k2="0.88" k3="0.12" k4="0"/></filter>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="wrap">
+      <p class="brand">Periode Madinah · Sirah Nabawiyah</p>
+      <div class="track"><div id="bar"></div></div>
+      <nav aria-label="Daftar halaman">
+        <button class="on" type="button">1. Hijrah ke Yatsrib</button>
+        <button type="button">2. Membangun Madinah</button>
+        <button type="button">3. Badar dan Uhud</button>
+        <button type="button">4. Khandaq dan Hudaibiyah</button>
+        <button type="button">5. Fathu Makkah dan Wafat Nabi</button>
+        <button type="button">Soal HOTS dan Sumber</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Halaman p1 -->
+    <section class="page on" id="p1">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Oasis dan rumah di Yatsrib">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="200" cy="36" r="12" fill="url(#gold)" class="flicker"/>
+            <rect y="130" width="240" height="50" fill="url(#sand)"/>
+            <rect x="40" y="88" width="6" height="44" fill="#8a6212"/><ellipse cx="43" cy="84" rx="20" ry="9" fill="url(#green)"/>
+            <rect x="70" y="96" width="6" height="38" fill="#8a6212"/><ellipse cx="73" cy="92" rx="20" ry="9" fill="url(#green)"/>
+            <rect x="120" y="100" width="56" height="34" fill="#d6bd8c"/><path d="M116 100 L148 74 L180 100 Z" fill="#8a6212"/>
+            <rect x="150" y="112" width="10" height="22" fill="#0d1b17"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+          <button class="hs" type="button" style="left:18%;top:47%" onclick="this.classList.toggle('open')">+<span class="tip">Kebun kurma: sumber penghidupan utama masyarakat Yatsrib.</span></button>
+            <button class="hs" type="button" style="left:62%;top:50%" onclick="this.classList.toggle('open')">+<span class="tip">Rumah-rumah penduduk yang menyambut kedatangan kaum Muhajirin.</span></button>
+          <figcaption>Oasis dan rumah di Yatsrib (ilustrasi sederhana)</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">622 M</p>
+          <h2>Hijrah ke Yatsrib</h2>
+          <div class="acad"><p>Hijrah pada tahun 622 M merupakan titik balik dalam sejarah awal Islam. Yatsrib dihuni suku Aus dan Khazraj yang sering berkonflik, serta kelompok Yahudi yang memiliki pengaruh ekonomi dan pertanian. Konflik antarsuku yang berkepanjangan, termasuk Perang Bu’ats, membuat kehadiran figur yang dapat diterima semua pihak sangat dibutuhkan.</p><p>Riwayat sirah mencatat Baiat Aqabah sebagai dasar hubungan politik ini. Kesepakatan tersebut menunjukkan bahwa dukungan bagi Nabi sudah terbentuk sebelum hijrah berlangsung.</p></div>
+          <p>Yatsrib adalah kota yang subur dengan banyak kebun kurma. Sebagian penduduknya sudah mendengar tentang Islam dan sebagian sudah memeluknya. Ketika Nabi dan para sahabat tiba, penduduk menyambut mereka dengan hangat. Sejak itu, kota ini lebih dikenal sebagai Madinah, singkatan dari Madinatun Nabi, atau kota Nabi.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul><li>Hijrah terjadi pada tahun 622 M dan menjadi awal kalender Hijriah.</li><li>Baiat Aqabah menjadi dasar dukungan penduduk Yatsrib.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman p2 -->
+    <section class="page" id="p2">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Masjid dan gulungan Piagam">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="120" cy="40" r="11" fill="url(#gold)" class="flicker"/>
+            <rect y="132" width="240" height="48" fill="url(#sand)"/>
+            <rect x="60" y="80" width="120" height="52" fill="#d6bd8c"/>
+            <rect x="56" y="76" width="128" height="6" fill="#8a6212"/>
+            <rect x="100" y="104" width="40" height="28" fill="#0d1b17"/>
+            <rect x="176" y="50" width="8" height="82" fill="url(#sand)"/><path d="M172 50 L180 30 L188 50 Z" fill="url(#gold)"/>
+            <rect x="22" y="104" width="22" height="28" rx="2" fill="#f7f3ea" stroke="#8a6212" stroke-width="2"/>
+            <path d="M28 112 H40 M28 118 H40 M28 124 H38" stroke="#8a6212" stroke-width="1.5"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+          <button class="hs" type="button" style="left:50%;top:66%" onclick="this.classList.toggle('open')">+<span class="tip">Masjid Nabawi: pusat ibadah, musyawarah, dan pendidikan.</span></button>
+            <button class="hs" type="button" style="left:14%;top:64%" onclick="this.classList.toggle('open')">+<span class="tip">Piagam: kesepakatan tertulis antarkelompok di Madinah.</span></button>
+          <figcaption>Masjid dan gulungan Piagam Madinah</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">622–623 M</p>
+          <h2>Membangun Masyarakat Madinah</h2>
+          <div class="acad"><p>Setelah menetap di Madinah, Nabi membangun tatanan sosial yang berlandaskan persaudaraan antara Muhajirin dan Anshar. Dalam kajian sejarah, langkah ini dibaca sebagai upaya integrasi sosial yang melampaui ikatan kesukuan lama.</p><p>Piagam Madinah mengatur hak dan kewajiban antara kaum Muslim, Yahudi, dan kelompok lain. Banyak pengkaji menilainya sebagai bentuk kesepakatan tertulis awal dalam sejarah politik Islam.</p></div>
+          <p>Para sahabat yang datang dari Makkah disebut Muhajirin, yaitu orang-orang yang berhijrah. Penduduk Madinah yang menolong mereka disebut Anshar. Nabi mempersaudarakan keduanya, sehingga Muhajirin yang kehilangan rumah dan harta mendapat tempat tinggal dan dukungan. Masjid Nabawi dibangun dekat rumah Nabi dan menjadi tempat shalat, belajar, dan bermusyawarah. Piagam Madinah menjadi aturan bersama agar semua kelompok bisa hidup berdampingan.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul><li>Muhajirin dan Anshar dipersaudarakan oleh Nabi.</li><li>Piagam Madinah mengatur hubungan antarkelompok.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman p3 -->
+    <section class="page" id="p3">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Bukit dan bendera di medan perang">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="120" cy="40" r="10" fill="url(#gold)" class="flicker"/>
+            <rect y="130" width="240" height="50" fill="url(#sand)"/>
+            <path d="M90 150 L150 70 L210 150 Z" fill="#8a6212" opacity=".7"/>
+            <rect x="40" y="60" width="2" height="70" fill="#1f2a24"/><path d="M42 60 L70 70 L42 80 Z" fill="#9b3b2b"/>
+            <rect x="190" y="60" width="2" height="70" fill="#1f2a24"/><path d="M192 60 L220 70 L192 80 Z" fill="#1d5c47"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+          <button class="hs" type="button" style="left:62%;top:50%" onclick="this.classList.toggle('open')">+<span class="tip">Bukit Uhud: lokasi pertempuran tahun 625 M.</span></button>
+            <button class="hs" type="button" style="left:17%;top:39%" onclick="this.classList.toggle('open')">+<span class="tip">Bendera: penanda pasukan di medan perang.</span></button>
+          <figcaption>Bukit dan bendera di medan perang</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">624–625 M</p>
+          <h2>Perang Badar dan Uhud</h2>
+          <div class="acad"><p>Perang Badar (2 H/624 M) dan Uhud (3 H/625 M) adalah dua peristiwa militer penting pada periode Madinah. Riwayat klasik menekankan dimensi pembelaan diri dan ancaman terhadap komunitas Muslim, sedangkan kajian modern juga membaca keduanya dalam konteks politik dan penguasaan jalur dagang Hijaz.</p><p>Uhud menjadi pelajaran tentang disiplin dan ketaatan pada komando, yang sering dibahas dalam kajian strategi militer awal Islam.</p></div>
+          <p>Di Badar, sekitar 313 kaum Muslim menghadapi pasukan Quraisy yang jumlahnya jauh lebih besar. Kemenangan itu membuat kaum Muslim lebih dihormati di Madinah dan sekitarnya. Setahun kemudian, di Uhud, pasukan Muslim sempat unggul. Namun, sebagian pemanah meninggalkan posisi mereka karena mengira perang sudah selesai. Quraisy berbalik menyerang, dan Nabi ikut terluka. Dari peristiwa ini, para sahabat belajar pentingnya disiplin.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul><li>Badar terjadi pada tahun 2 H (624 M).</li><li>Uhud menjadi pelajaran tentang disiplin.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman p4 -->
+    <section class="page" id="p4">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Parit dan tenda di gurun">
+            <rect width="240" height="180" fill="url(#day)"/>
+            <circle cx="200" cy="36" r="12" fill="url(#gold)" class="flicker"/>
+            <rect y="130" width="240" height="50" fill="url(#sand)"/>
+            <rect y="112" width="240" height="12" fill="#5b4a2f"/>
+            <path d="M140 118 L170 66 L200 118 Z" fill="#f7f3ea" stroke="#8a6212" stroke-width="2"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+          <button class="hs" type="button" style="left:50%;top:65%" onclick="this.classList.toggle('open')">+<span class="tip">Parit Khandaq: strategi bertahan yang digali di sekeliling kota.</span></button>
+            <button class="hs" type="button" style="left:71%;top:50%" onclick="this.classList.toggle('open')">+<span class="tip">Tenda: tempat perundingan di Hudaibiyah.</span></button>
+          <figcaption>Parit dan tenda di gurun</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">627–628 M</p>
+          <h2>Khandaq dan Hudaibiyah</h2>
+          <div class="acad"><p>Perang Khandaq (5 H/627 M) ditandai strategi menggali parit di sekeliling Madinah, yang menurut riwayat diusulkan oleh Salman al-Farisi. Strategi ini menunjukkan adaptasi militer yang belum lazim di kalangan Arab saat itu.</p><p>Perjanjian Hudaibiyah (6 H/628 M) dipandang banyak pengkaji sebagai langkah diplomasi yang membuka ruang dakwah lebih luas, meskipun isinya terlihat merugikan kaum Muslim pada awalnya.</p></div>
+          <p>Ketika pasukan gabungan datang menyerang Madinah, kaum Muslim menggali parit yang cukup lebar di sekeliling kota. Musuh tidak bisa langsung menyeberang, dan akhirnya mereka pulang. Dua tahun kemudian, Nabi bersama lebih dari seribu sahabat hendak berumrah ke Makkah, tetapi dihalangi di Hudaibiyah. Kedua pihak lalu menandatangani perjanjian gencatan senjata. Banyak sahabat merasa berat hati, tetapi setelah itu dakwah berkembang lebih luas.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul><li>Parit Khandaq melindungi Madinah dari serangan besar.</li><li>Perjanjian Hudaibiyah membawa gencatan senjata.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman p5 -->
+    <section class="page" id="p5">
+      <div class="grid">
+        <figure>
+          <svg viewBox="0 0 240 180" role="img" aria-label="Ka’bah dan langit malam">
+            <rect width="240" height="180" fill="url(#night)"/>
+            <circle cx="190" cy="40" r="14" fill="url(#glow)" class="flicker"/>
+            <circle cx="50" cy="30" r="1.5" fill="#fff" class="twinkle"/><circle cx="210" cy="90" r="1.2" fill="#fff" class="twinkle"/>
+            <rect y="132" width="240" height="48" fill="url(#sand)"/>
+            <rect x="84" y="82" width="72" height="50" fill="#0d1b17"/>
+            <rect x="84" y="104" width="72" height="6" fill="url(#gold)"/>
+          </svg>
+          <button class="tg" type="button" onclick="this.closest('figure').classList.toggle('night')">Siang / Malam</button>
+          <button class="hs" type="button" style="left:50%;top:56%" onclick="this.classList.toggle('open')">+<span class="tip">Ka’bah: dibersihkan dari berhala saat Fathu Makkah.</span></button>
+            <button class="hs" type="button" style="left:50%;top:83%" onclick="this.classList.toggle('open')">+<span class="tip">Haji Wada’: haji terakhir Nabi bersama kaum Muslim.</span></button>
+          <figcaption>Ka’bah di malam hari</figcaption>
+        </figure>
+        <div class="text">
+          <p class="date">630–632 M</p>
+          <h2>Fathu Makkah dan Wafatnya Nabi</h2>
+          <div class="acad"><p>Fathu Makkah (8 H/630 M) menjadi puncak keberhasilan politik dan dakwah Nabi di Madinah. Pembebasan Makkah berlangsung dengan sedikit pertumpahan darah dan diikuti pembersihan Ka’bah dari berhala. Peristiwa ini sering dikaji sebagai contoh keseimbangan antara kekuatan politik dan nilai moral.</p><p>Haji Wada’ (10 H/632 M) dan wafatnya Nabi di Madinah pada tahun 11 H (632 M) menutup periode ini dan membuka persoalan kepemimpinan umat setelahnya.</p></div>
+          <p>Pada tahun 630 M, Nabi bersama pasukan kembali ke Makkah. Penduduk yang tidak berbuat jahat diberi jaminan keamanan, dan berhala di sekitar Ka’bah dihancurkan. Dua tahun kemudian, Nabi berhaji bersama kaum Muslim dalam Haji Wada’ dan menyampaikan pesan-pesan penting. Tidak lama setelah itu, beliau wafat di Madinah, di rumah Aisyah. Umat kemudian perlu menentukan pemimpin, dan proses itu menjadi awal periode berikutnya.</p>
+          <div class="points">
+            <h3>Poin penting</h3>
+            <ul><li>Fathu Makkah terjadi pada tahun 8 H (630 M).</li><li>Nabi wafat di Madinah pada tahun 11 H (632 M).</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Halaman 6: soal HOTS dan sumber -->
+    <section class="page" id="p6">
+      <h2>Soal HOTS Periode Madinah</h2>
+      <p>Jawab sepuluh soal berikut. Soal ini menguji kemampuan menganalisis, mengevaluasi, dan menghubungkan peristiwa. Jawaban langsung diperiksa setelah Anda memilih.</p>
+      <div id="quiz"></div>
+      <p class="score" id="score">Skor: 0 dari 10</p>
+      <button class="btn ghost" id="reset" type="button">Ulangi kuis</button>
+      <h3 style="margin-top:32px">Sumber</h3>
+      <ul class="sources">
+        <li><strong>Syaikh Shafiyyurrahman al-Mubarakfuri</strong>, <em>Ar-Rahiqul Makhtum</em> (Sirah Nabawiyah), terutama bab periode Madinah.</li>
+        <li><strong>Ibnu Hisyam</strong>, <em>Sirah Nabawiyah</em>, ringkasan dari karya Ibnu Ishaq.</li>
+        <li><strong>Muhammad Husain Haekal</strong>, <em>Sejarah Hidup Muhammad</em>. Bacaan pendamping yang mudah dipahami.</li>
+      </ul>
+      <p>Sebelum digunakan di kelas, periksa kembali urutan dan tanggal Badar, Uhud, Khandaq, dan Hudaibiyah dengan buku ajar yang dipakai sekolah.</p>
+    </section>
+  </main>
+
+  <div class="controls">
+    <div class="row">
+      <button class="btn ghost" id="prev" type="button">← Sebelumnya</button>
+      <span id="pos">1 / 6</span>
+      <button class="btn" id="next" type="button">Berikutnya →</button>
+    </div>
+  </div>
+
+  <script>
+    const pages = [...document.querySelectorAll('.page')];
+    const tabs = [...document.querySelectorAll('nav button')];
+    const seen = new Set([0]);
+    let cur = 0;
+
+    function show(i) {
+      cur = Math.max(0, Math.min(pages.length - 1, i));
+      pages.forEach((p, k) => p.classList.toggle('on', k === cur));
+      tabs.forEach((t, k) => t.classList.toggle('on', k === cur));
+      seen.add(cur);
+      document.getElementById('pos').textContent = (cur + 1) + ' / ' + pages.length;
+      document.getElementById('prev').disabled = cur === 0;
+      document.getElementById('next').disabled = cur === pages.length - 1;
+      document.getElementById('bar').style.width = (seen.size / pages.length * 100) + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabs.forEach((t, k) => t.addEventListener('click', () => show(k)));
+    document.getElementById('prev').addEventListener('click', () => show(cur - 1));
+    document.getElementById('next').addEventListener('click', () => show(cur + 1));
+    document.addEventListener('keydown', e => {
+      if (e.target.closest('.q')) return;
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+    show(0);
+
+    // Kuis
+    // Soal HOTS
+    const HOTS = [
+      { q: 'Mengapa hijrah ke Yatsrib dapat dipandang sebagai langkah strategis dakwah?', o: ['Karena Yatsrib tidak memiliki penduduk', 'Karena adanya basis dukungan dan konflik antarsuku yang membuka peran Nabi sebagai pemersatu', 'Karena Makkah sudah menerima Islam sepenuhnya', 'Karena Yatsrib adalah pusat perdagangan Quraisy'], a: 1, e: 'Baiat Aqabah dan kondisi sosial yang terpecah membuat Nabi dapat berperan sebagai pemersatu.' },
+      { q: 'Makna persaudaraan Muhajirin dan Anshar bagi masyarakat Madinah adalah...', o: ['Integrasi sosial yang melampaui ikatan kesukuan lama', 'Pembentukan pasukan militer tetap', 'Kewajiban membayar pajak kepada Quraisy', 'Larangan berdagang bagi Muhajirin'], a: 0, e: 'Persaudaraan ini menggabungkan kelompok yang sebelumnya terpisah oleh suku dan asal daerah.' },
+      { q: 'Piagam Madinah paling tepat dinilai sebagai...', o: ['Dokumen perjanjian damai dengan Quraisy', 'Konstitusi tertulis awal yang mengatur hubungan antarkelompok', 'Catatan perjanjian Hudaibiyah', 'Daftar sahabat yang ikut Perang Badar'], a: 1, e: 'Piagam ini mengatur hak dan kewajiban berbagai kelompok yang tinggal di Madinah.' },
+      { q: 'Kekalahan sementara di Uhud menunjukkan...', o: ['Islam tidak mampu bertahan dari musuh', 'Pentingnya disiplin dan kepatuhan pada komando dalam strategi', 'Kaum Muslim harus meninggalkan Madinah', 'Perang selalu ditentukan oleh jumlah pasukan'], a: 1, e: 'Pelanggaran perintah di medan perang menjadi penyebab utama berubahnya keadaan di Uhud.' },
+      { q: 'Mengapa Badar dipandang sebagai titik balik?', o: ['Karena Nabi memperoleh harta terbesar', 'Karena kemenangan itu meningkatkan wibawa komunitas Muslim di Madinah dan sekitarnya', 'Karena Quraisy menerima Islam setelah Badar', 'Karena Madinah menaklukkan Persia'], a: 1, e: 'Kemenangan di Badar memperkuat posisi politik dan sosial komunitas Muslim.' },
+      { q: 'Strategi parit dalam Perang Khandaq menunjukkan...', o: ['Penggunaan strategi bertahan yang adaptif, yang belum lazim di kalangan Arab saat itu', 'Tanda bahwa kaum Muslim tidak memiliki pasukan', 'Upaya menghindari perang sama sekali', 'Kebiasaan perang Quraisy yang diadopsi'], a: 0, e: 'Parit membuat pasukan penyerang tidak bisa langsung menyeberang ke kota.' },
+      { q: 'Perjanjian Hudaibiyah dipandang penting karena...', o: ['Menghapus kewajiban shalat', 'Membuka ruang dakwah yang lebih luas meskipun isinya tampak merugikan pada awalnya', 'Menyerahkan Madinah kepada Quraisy', 'Mengakhiri dakwah secara permanen'], a: 1, e: 'Gencatan senjata memberi waktu dan ruang bagi dakwah untuk berkembang.' },
+      { q: 'Fathu Makkah yang berlangsung dengan sedikit pertumpahan darah menunjukkan...', o: ['Kelemahan pasukan Nabi', 'Keseimbangan antara kekuatan politik dan nilai moral dalam mengelola kemenangan', 'Ketidakmampuan Quraisy untuk berperang', 'Kebijakan menghukum seluruh penduduk Makkah'], a: 1, e: 'Jaminan keamanan bagi penduduk yang tidak berbuat jahat menunjukkan sikap moral dalam kemenangan.' },
+      { q: 'Dalam kajian sejarah, periode Madinah sering dibaca sebagai...', o: ['Masa pelemahan dakwah', 'Masa pembentukan tatanan politik dan sosial komunitas Islam', 'Masa dominasi ekonomi Persia', 'Masa konflik tanpa perubahan'], a: 1, e: 'Di Madinah, komunitas Islam membangun aturan bersama, institusi ibadah, dan hubungan antarkelompok.' },
+      { q: 'Jika seorang guru ingin mengajarkan transisi dari Makkah ke Madinah, aspek mana yang paling tepat dibahas?', o: ['Warna pakaian pasukan', 'Perubahan posisi dakwah dari tekanan di Makkah menuju pembentukan komunitas di Madinah', 'Jumlah hewan yang dibawa dalam perjalanan', 'Urutan nama suku di Makkah'], a: 1, e: 'Transisi ini menunjukkan perubahan dari tekanan menuju pembangunan komunitas.' }
+    ];
+    HOTS.forEach((s, n) => {
+      const d = document.createElement('div');
+      d.className = 'q';
+      d.dataset.exp = s.e;
+      d.innerHTML = '<p class="lead">' + (n + 1) + '. ' + s.q + '</p>' + s.o.map((t, k) => '<button class="opt" type="button" data-ok="' + (k === s.a ? 1 : 0) + '">' + t + '</button>').join('') + '<p class="fb"></p>';
+      document.getElementById('quiz').appendChild(d);
+    });
+    const qs = [...document.querySelectorAll('.q')];
+    let score = 0;
+    const scoreEl = document.getElementById('score');
+
+    qs.forEach(q => {
+      const fb = q.querySelector('.fb');
+      q.querySelectorAll('.opt').forEach(btn => btn.addEventListener('click', () => {
+        if (q.dataset.done) return;
+        q.dataset.done = '1';
+        const ok = btn.dataset.ok === '1';
+        btn.classList.add(ok ? 'ok' : 'bad');
+        q.querySelectorAll('.opt').forEach(x => {
+          x.disabled = true;
+          if (x.dataset.ok === '1') x.classList.add('ok');
+        });
+        if (ok) score++;
+        fb.textContent = (ok ? 'Benar. ' : 'Belum tepat. ') + q.dataset.exp;
+        fb.className = 'fb ' + (ok ? 'good' : 'bad');
+        scoreEl.textContent = 'Skor: ' + score + ' dari ' + qs.length;
+      }));
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      score = 0;
+      qs.forEach(q => {
+        delete q.dataset.done;
+        q.querySelectorAll('.opt').forEach(x => { x.disabled = false; x.classList.remove('ok', 'bad'); });
+        q.querySelector('.fb').textContent = '';
+        q.querySelector('.fb').className = 'fb';
+      });
+      scoreEl.textContent = 'Skor: 0 dari ' + qs.length;
+    });
+  </script>
+</body>
+</html>
